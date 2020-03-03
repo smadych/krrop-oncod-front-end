@@ -1,5 +1,12 @@
 <template lang="pug">
-    h1 {{message}}
+.wrapper
+    .form
+        img(src='../assets/images/logo.svg')
+        h1 {{message}}
+        input
+        input
+        button
+        a
 </template>
 
 <script lang="ts">
@@ -11,6 +18,8 @@ export default class Authorization extends Vue {
 }
 </script>
 
-<style lang="sass">
-
+<style lang="scss">
+* {
+    border: 1px solid black;
+}
 </style>
