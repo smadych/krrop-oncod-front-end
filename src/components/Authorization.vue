@@ -3,20 +3,54 @@
     .form
         img.logo(src='../assets/images/logo.svg')
         h1 {{message}}
-        .wrapper-input
-            input.login(placeholder='Логин')
-            input.password(placeholder='Пароль')
+        .wrapper-input(ref='userData')
+            input.login(placeholder='Логин' type='email' v-model='email')
+            input.password(placeholder='Пароль' type='password')
         .wrapper-buttons
-            button Войти
+            button(@click='sendData') Войти
             a Забыли пароль?
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { DataService } from '@/service//methodsApi';
+import { SingInInterface } from '@/interfaces';
+import { UserLogInData } from '@/store/logIn';
+
 
 @Component({})
 export default class Authorization extends Vue {
-    message: string = 'Войдите в систему'
+    message = 'Войдите в систему'
+
+    dataService: DataService = new DataService()
+
+    err: any = ''
+
+    email = ''
+
+    password = ''
+
+    ref: any = this.$refs
+
+    sendData(): void {
+      console.log(this.email);
+      console.log(this.password);
+      const userData: UserLogInData = {
+        email: this.email,
+        password: this.password,
+      };
+      this.dataService.sendDataAutorization(userData, this.logData, this.error);
+    }
+
+    logData(data: any) {
+      console.log(this.message);
+      console.log(data);
+    }
+
+    error(message: any) {
+      this.err = message;
+      alert(message);
+    }
 }
 </script>
 
@@ -32,7 +66,7 @@ export default class Authorization extends Vue {
 
 html,
 body {
-    min-height: 100%;
+    min-height: 100vh;
 }
 .wrapper {
     display: flex;

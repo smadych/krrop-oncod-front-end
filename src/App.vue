@@ -10,7 +10,7 @@ import Layout from './components/Layout.vue';
 @Component({
   components: {
     Layout,
-  }
+  },
 })
 export default class App extends Vue {
 
@@ -26,7 +26,8 @@ export default class App extends Vue {
   color: #2c3e50;
 }
 html,
-body {
+body,
+#app {
     min-height: 100%;
 }
 </style>
