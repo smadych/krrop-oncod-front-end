@@ -24,10 +24,11 @@ export default class App extends Vue {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-html,
-body,
-#app {
-    min-height: 100%;
+html, body, #app {
+  height: 100%;
 }
 </style>

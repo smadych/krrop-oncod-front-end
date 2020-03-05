@@ -11,15 +11,12 @@ import Authorization from './Authorization.vue';
     Authorization,
   }
 })
-export default class HelloWorld extends Vue {
+export default class Layout extends Vue {
   
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-html,
-body {
-    min-height: 100%;
-}
+
 </style>
