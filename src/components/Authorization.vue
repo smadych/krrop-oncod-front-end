@@ -3,7 +3,7 @@
   img.logo(src='../assets/images/logo.svg')
   h1 {{message}}
   input.login(placeholder='Логин' type='email' v-model='email')
-  input.password(placeholder='Пароль' type='password')
+  input.password(placeholder='Пароль' type='password' v-model='password')
   button(@click='sendData') Войти
   a Забыли пароль?
 </template>

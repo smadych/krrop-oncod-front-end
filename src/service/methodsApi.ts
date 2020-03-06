@@ -4,29 +4,22 @@ import { UserLogInData } from '@/store/logIn';
 
 export class DataService {
   axs = ax;
-
-  // // Make a request for a user with a given ID
-  // public getDataStore(succes: (todos: any) => void, err: (error: any) => void) {
-  //   this.axs.get('/todo')
-  //     .then((response) => {
-  //       // handle success
-  //       const result = response.data;
-  //       succes(result);
-  //     })
-  //     .catch((error) => {
-  //       // handle error
-  //       err(error);
-  //     });
-  // }
-
+  
   public sendDataAutorization(data: any, succes: (logData: any) => void, err: (error: any) => void) {
-    this.axs.post('api/auth/login', data).then((response) => {
+    this.axs.post('api/auth/login', data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: 'Bearer {token}',
+        'X-localization': 'uk',
+      },
+    }).then((response) => {
       console.log(response);
-      const respData: any = response.data;
+      const respData: any = response;
       succes(respData);
     }).catch((error) => {
       err(error);
-      console.log(error.response.data.errors);
+      console.log(error);
     });
   }
 }
