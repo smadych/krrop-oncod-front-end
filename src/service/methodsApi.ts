@@ -19,14 +19,14 @@ export class DataService {
   //     });
   // }
 
-  public sendDataAutorization(data: UserLogInData, succes: (logData: UserLogInData) => void, err: (error: any) => void) {
+  public sendDataAutorization(data: any, succes: (logData: any) => void, err: (error: any) => void) {
     this.axs.post('api/auth/login', data).then((response) => {
       console.log(response);
-      const respData: UserLogInData = response.data;
+      const respData: any = response.data;
       succes(respData);
     }).catch((error) => {
       err(error);
-      console.log(error);
+      console.log(error.response.data.errors);
     });
   }
 }
