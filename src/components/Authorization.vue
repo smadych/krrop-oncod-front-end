@@ -3,9 +3,12 @@
   img.logo(src='../assets/images/logo.svg')
   h1 {{message}}
   input.login(placeholder='Логин' type='email' v-model='email')
+  span.error-email {{errEmail}}
   input.password(placeholder='Пароль' type='password' v-model='password')
+  span.error-pass {{errPass}}
   button(@click='sendData') Войти
   a Забыли пароль?
+  button.getData(@click='getData') Get data
 </template>
 
 <script lang="ts">
@@ -29,14 +32,43 @@ export default class Authorization extends Vue {
 
     ref: any = this.$refs
 
+    errEmail = ''
+
+    errPass = ''
+
     sendData(): void {
-      console.log(this.email);
+      if (this.checkInput()) {
+        const userData: UserLogInData = {
+          email: this.email,
+          password: this.password,
+        };
+        this.dataService.sendDataAutorization(JSON.stringify(userData),
+          this.logData, this.errorLogIn);
+      }
+    }
+
+    checkInput(): boolean {
+      this.errEmail = '';
+      this.errPass = '';
+      if (this.email === '' || this.password === '') {
+        if (this.email === '' || this.email === ' ') {
+          this.errEmail = 'Введите адрес электронной почты';
+        }
+        if (this.password === '' || this.password === ' ') {
+          this.errPass = 'Введите пароль';
+        }
+        return false;
+      }
+      return true;
+    }
+
+    getData(): void {
+      this.dataService.getUserProfile(this.logDataProfile, this.error);
+    }
+
+    logDataProfile(data: any) {
       console.log(this.password);
-      const userData: UserLogInData = {
-        email: this.email,
-        password: this.password,
-      };
-      this.dataService.sendDataAutorization(JSON.stringify(userData), this.logData, this.error);
+      console.log(data);
     }
 
     logData(data: any) {
@@ -44,9 +76,18 @@ export default class Authorization extends Vue {
       console.log(data);
     }
 
+    errorLogIn(message: any) {
+      if (message.response.status === 422
+      || message.response.status === 401) {
+        this.errPass = 'Неверные почта или пароль';
+      }
+      console.log(message.response.status);
+      console.log(message.response.data.errors.email);
+    }
+
     error(message: any) {
       this.err = message;
-      alert(message);
+      console.log(message);
     }
 }
 </script>
@@ -88,10 +129,18 @@ export default class Authorization extends Vue {
       line-height: 24px;
     }
     .login {
-      margin-bottom: 25px;
+      margin-bottom: 5px;
+    }
+    .error-email {
+      margin-bottom: 10px;
+      color: red;
     }
     .password {
-      margin-bottom: 50px;
+      margin-bottom: 5px;
+    }
+    .error-pass {
+      margin-bottom: 40px;
+      color: red;
     }
     button, a:hover {
       cursor: pointer;
