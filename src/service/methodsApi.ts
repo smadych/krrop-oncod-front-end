@@ -29,7 +29,7 @@ export class DataService {
 
   public getUserProfile(succes: (logData: any) => void, err: (error: any) => void) {
     console.log(this.tokens);
-    this.axs.get('/api/profile/show', {
+    this.axs.get('/api/operator/patients', {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',

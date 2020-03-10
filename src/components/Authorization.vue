@@ -6,9 +6,8 @@
   span.error-email {{errEmail}}
   input.password(placeholder='Пароль' type='password' v-model='password')
   span.error-pass {{errPass}}
-  button(@click='sendData') Войти
+  button(@click='logIn') Войти
   a Забыли пароль?
-  button.getData(@click='getData') Get data
 </template>
 
 <script lang="ts">
@@ -36,7 +35,7 @@ export default class Authorization extends Vue {
 
     errPass = ''
 
-    sendData(): void {
+    logIn(): void {
       if (this.checkInput()) {
         const userData: UserLogInData = {
           email: this.email,
@@ -62,16 +61,8 @@ export default class Authorization extends Vue {
       return true;
     }
 
-    getData(): void {
-      this.dataService.getUserProfile(this.logDataProfile, this.error);
-    }
-
-    logDataProfile(data: any) {
-      console.log(this.password);
-      console.log(data);
-    }
-
     logData(data: any) {
+      this.$emit('patientPage', true);
       console.log(this.message);
       console.log(data);
     }
