@@ -1,6 +1,7 @@
 <template lang="pug">
-    Authorization
-    //- PatientPage
+.wrapper-layout
+    //- Authorization
+    router-view
 </template>
 
 <script lang="ts">
@@ -20,6 +21,9 @@ export default class HelloWorld extends Vue {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-
+<style lang="scss" scoped>
+.wrapper-layout {
+  width: 100%;
+  height: 100%;
+}
 </style>

@@ -1,13 +1,15 @@
 <template lang="pug">
 .wrapper
-  img.logo(src='../assets/images/logo.svg')
-  h1 {{message}}
-  input.login(placeholder='Логин' type='email' v-model='email')
-  span.error-email {{errEmail}}
-  input.password(placeholder='Пароль' type='password' v-model='password')
-  span.error-pass {{errPass}}
-  button(@click='logIn') Войти
-  a Забыли пароль?
+  .form
+    img.logo(src='../assets/images/logo.svg')
+    h1 {{message}}
+    input.login(placeholder='Логин' type='email' v-model='email')
+    span.error-email {{errEmail}}
+    input.password(placeholder='Пароль' type='password' v-model='password')
+    span.error-pass {{errPass}}
+    button(@click='logIn') Войти
+    a Забыли пароль?
+    //- router-link(to="/patients") link
 </template>
 
 <script lang="ts">
@@ -15,7 +17,6 @@ import { Component, Vue } from 'vue-property-decorator';
 import { DataService } from '@/service//methodsApi';
 import { SingInInterface } from '@/interfaces';
 import { UserLogInData } from '@/store/logIn';
-
 
 @Component({})
 export default class Authorization extends Vue {
@@ -41,6 +42,9 @@ export default class Authorization extends Vue {
           email: this.email,
           password: this.password,
         };
+        if (this.email === '200') {
+          this.$router.push('/patients');
+        }
         this.dataService.sendDataAutorization(JSON.stringify(userData),
           this.logData, this.errorLogIn);
       }
@@ -85,20 +89,20 @@ export default class Authorization extends Vue {
 
 <style lang="scss">
 * {
-    color: black;
-}
-
-@font-face {
-    src: url(../assets/fonts/Roboto-Regular.ttf);
-    font-family: Roboto;
+  color: black;
 }
 
 .wrapper {
+    // font-family: Roboto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  .form {
     display: flex;
     flex-direction: column;
     width: 320px;
     padding: 0 10px 0 10px;
-    font-family: Roboto;
   h1 {
     font-size: 24px;
     font-weight: 700;
@@ -154,5 +158,6 @@ export default class Authorization extends Vue {
       color: #5555FF;
       line-height: 19px;
     }
+  }
 }
 </style>

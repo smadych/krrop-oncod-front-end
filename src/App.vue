@@ -18,15 +18,18 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
+@font-face {
+  src: url(./assets/fonts/Roboto-Regular.ttf);
+  font-family: Roboto;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  // font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 html, body, #app {
   height: 100%;

@@ -1,4 +1,8 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import PatientsListPage from '../components/PatientsListPage.vue';
+import Authorization from '../components/Authorization.vue';
 
-Vue.use(VueRouter);
+export const routes = [
+  { path: '/patients', component: PatientsListPage },
+  { path: '/login', component: Authorization},
+  { path: '/', redirect: '/login'},
+]
