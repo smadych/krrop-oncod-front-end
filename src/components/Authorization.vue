@@ -42,9 +42,6 @@ export default class Authorization extends Vue {
           email: this.email,
           password: this.password,
         };
-        if (this.email === '200') {
-          this.$router.push('/patients');
-        }
         this.dataService.sendDataAutorization(JSON.stringify(userData),
           this.logData, this.errorLogIn);
       }
@@ -66,18 +63,22 @@ export default class Authorization extends Vue {
     }
 
     logData(data: any) {
-      this.$emit('patientPage', true);
-      console.log(this.message);
-      console.log(data);
+      if (data.status === 200) {
+        // this.$router.push('/patients');
+        this.$router.push('/patient/card');
+      }
+      // console.log(this.message);
+      // console.log(data.status);
     }
 
     errorLogIn(message: any) {
-      if (message.response.status === 422
-      || message.response.status === 401) {
-        this.errPass = 'Неверные почта или пароль';
+      console.log(message.response);
+      if (message.response !== undefined) {
+        if (message.response.status === 422
+        || message.response.status === 401) {
+          this.errPass = 'Неверные почта или пароль';
+        }
       }
-      console.log(message.response.status);
-      console.log(message.response.data.errors.email);
     }
 
     error(message: any) {
