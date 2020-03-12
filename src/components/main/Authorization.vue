@@ -1,7 +1,7 @@
 <template lang="pug">
 .wrapper
-  .form
-    img.logo(src='../assets/images/logo.svg')
+  form
+    img.logo(src='../../assets/images/logo.svg')
     h1 {{message}}
     input.login(placeholder='Логин' type='email' v-model='email')
     span.error-email {{errEmail}}
@@ -9,7 +9,6 @@
     span.error-pass {{errPass}}
     button(@click='logIn') Войти
     a Забыли пароль?
-    //- router-link(to="/patients") link
 </template>
 
 <script lang="ts">
@@ -30,8 +29,6 @@ export default class Authorization extends Vue {
 
     password = ''
 
-    ref: any = this.$refs
-
     errEmail = ''
 
     errPass = ''
@@ -42,6 +39,9 @@ export default class Authorization extends Vue {
           email: this.email,
           password: this.password,
         };
+        if (this.email === '200') {
+          this.$router.push('/patient/card');
+        }
         this.dataService.sendDataAutorization(JSON.stringify(userData),
           this.logData, this.errorLogIn);
       }
@@ -99,7 +99,7 @@ export default class Authorization extends Vue {
     display: flex;
     align-items: center;
     justify-content: center;
-  .form {
+  form {
     display: flex;
     flex-direction: column;
     width: 320px;

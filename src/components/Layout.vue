@@ -1,17 +1,14 @@
 <template lang="pug">
 .wrapper-layout
-    //- Authorization
     router-view
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Authorization from './Authorization.vue';
-import PatientPage from './PatientsListPage.vue';
+import PatientPage from './main/PatientsListPage.vue';
 
 @Component({
   components: {
-    Authorization,
     PatientPage,
   },
 })

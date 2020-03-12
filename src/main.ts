@@ -4,7 +4,7 @@ import './registerServiceWorker';
 import store from './store';
 import VueRouter from 'vue-router';
 import { routes } from './router/index';
-import PatientsListPage from './components/PatientsListPage.vue';
+// import PatientsListPage from './components/PatientsListPage.vue';
 import './assets/styles/normalize.css';
 
 Vue.config.productionTip = false;

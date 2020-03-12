@@ -1,6 +1,6 @@
-import PatientsListPage from '../components/PatientsListPage.vue';
-import Authorization from '../components/Authorization.vue';
-import PatientCard from '../components/view/PatientCard.vue'
+import PatientsListPage from '../components/main/PatientsListPage.vue';
+import Authorization from '../components/main/Authorization.vue';
+import PatientCard from '../components/view/PatientCard.vue';
 
 export const routes = [
   { path: '/patients', component: PatientsListPage },

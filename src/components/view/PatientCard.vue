@@ -1,14 +1,8 @@
 <template lang="pug">
 .wrapper-card
-    header
-        .wrapper-header
-            img.logo(src='../../assets/images/logo.svg')
-            input.search(placeholder='Пошук по пацієнтам')
-            .full-name
-                h5.full-name {{name}}
-                span.initials {{getLetters}}
+    Header
     section.info-section
-        a.link-back < Пациенты
+        router-link.link-back(to="/patients") < Пациенты
         p.id-patient BM4976
         p.patient-name Маркова Александра Константиновна
         .region-wrap
@@ -25,8 +19,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Header from '../common/Header.vue';
 
-@Component({})
+@Component({
+    components: {
+        Header,
+    }
+})
 export default class PatientCard extends Vue {
     
     name = 'Bob Mlinton'
@@ -38,55 +37,14 @@ export default class PatientCard extends Vue {
 </script>
 
 <style lang="scss" scoped>
-header {
-    display: flex;
-    flex-direction: row;
-    // flex-flow: wrap;
-    border-bottom: 1px solid #E1E1E1;
-    .wrapper-header {
-        display: flex;
-        flex-direction: row;
-        flex-flow: wrap;
-        padding: 0 30px 0 30px;
-        width: 100%;
-    .logo {
-        margin: 0 55px 0 0;
-    }
-    .full-name {
-        margin-left: auto;
-        display: inline-block;
-        vertical-align: middle;
-    }
-    .search {
-        box-sizing: border-box;
-        outline: none;
-        background-color: #F3F3F7;
-        padding: 0 100px 0 35px;
-        height: 40px;
-        margin: auto 0;
-        border-radius: 5px;
-        border: none;
-        background-image: url('../../assets/images/magnifying-glass.svg');
-        background-repeat: no-repeat;
-        background-position: 10px 10px;
-        background-size: 20px;
-    }
-    .initials {
-        margin: auto 0 auto 10px;
-        padding: 8px 7px;
-        border-radius: 100%;
-        background-color: #5555FF;
-    }
-    }
-}
 
 .info-section {
     padding: 0 30px 0 30px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    // justify-content: left;
     .link-back, .region {
+        text-decoration: none;
         color: #A5A5B1;
         font-size: 14px;
         letter-spacing: 0.13px;
@@ -117,16 +75,20 @@ header {
             color: white;
             box-sizing: border-box;
             border-radius: 3px;
-            padding: 2px 9px;
+            padding: 3px 9px;
             background-color: #86E691;
             margin-right: 14px;
     }
         .region {
             margin: 0;
+            margin-top: 3px;
+            // display: block;
+            // vertical-align: middle;
         }
     }
     .diagnosis {
-        width: 100%;
+        width: fill-available;
+        width: available;
         text-align: left;
         padding: 10px 0 10px 20px;
         border-radius: 3px;
@@ -143,6 +105,8 @@ header {
     flex-direction: column;
     align-items: flex-start;
     nav {
+        display: flex;
+        flex-flow: wrap;
         a {
             margin-right: 80px;
             padding-bottom: 14px;
@@ -153,25 +117,6 @@ header {
         a:last-child {
             margin: 0;
         }
-    }
-}
-@media only screen and (max-width: 680px) {
-    .wrapper-header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        
-        .full-name {
-            margin-right: auto;
-            display: inline-block;
-            vertical-align: middle;
-    }
-    }
-}
-
-@media only screen and (max-width: 520px) {
-    .logo {
-        margin: 10px 0 20px 0 !important;
     }
 }
 </style>
