@@ -20,6 +20,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Header from '../common/Header.vue';
+import { DataService } from '@/service/methodsApi';
 
 @Component({
     components: {
@@ -28,10 +29,13 @@ import Header from '../common/Header.vue';
 })
 export default class PatientCard extends Vue {
     
-    name = 'Bob Mlinton'
+    name = ''
 
-    get getLetters() {
-        return this.name.match(/\b(\w)/g).join('').toUpperCase();
+    dataService: DataService = new DataService()
+
+    error(message: any) {
+      console.log(this.name);
+      console.log(message);
     }
 }
 </script>

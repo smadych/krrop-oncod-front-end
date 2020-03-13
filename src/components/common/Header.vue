@@ -1,19 +1,50 @@
 <template lang="pug">
 header
     .wrapper-header
-        img.logo(src='../../assets/images/logo.svg')
+        img.logo(src='../../assets/images/logo.svg' @click='logOut')
         input.search(placeholder='Пошук по пацієнтам')
         .full-name
-            h5.full-name {{name}}
-            span.initials FF
+            h5.full-name {{fullName}}
+            span.initials {{letters}}
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { DataService } from '@/service/methodsApi';
+import { vuexModule } from '../../store';
 
 @Component({})
 export default class Header extends Vue {
-    name = 'Bob Mlinton'
+    dataService: DataService = new DataService()
+
+    fullName: string = ''
+
+    letters: string = ''
+
+    mounted() {
+        console.log(vuexModule.store.token);
+        console.log(vuexModule.store.expiresDate);
+        this.dataService.getUserProfile(this.getFullName, this.error)
+    }
+    
+    getFullName(data: any) {
+        this.fullName = data.data.first_name + ' ';
+        this.fullName += data.data.last_name;
+        this.getLetters();
+    }
+
+    getLetters() {
+        this.letters = this.fullName.match(/\b(\w)/g).join('').toUpperCase();
+    }
+
+     error(message: any) {
+      console.log(this.fullName);
+      console.log(message);
+    }
+
+    logOut() {
+        this.dataService.logOut();
+    }
 }
 </script>
 

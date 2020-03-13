@@ -25,18 +25,8 @@ import Header from '../common/Header.vue';
     }
 })
 export default class Authorization extends Vue {
-    name = 'Bob Mlinton'
 
     statusArr = Status
-
-    created() {
-        console.log(this.name);
-        console.log(Status);
-    }
-    
-    get getLetters() {
-        return this.name.match(/\b(\w)/g).join('').toUpperCase(); 
-    }
 }
 </script>
 

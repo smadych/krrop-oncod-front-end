@@ -1,16 +1,31 @@
+import {
+  createModule, mutation, createProxy, action, extractVuexModule,
+} from 'vuex-class-component/dist';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import PersistedState from 'vuex-persistedstate';
+
+const VuexModule = createModule({
+  namespaced: 'user',
+  strict: false,
+  target: 'nuxt',
+});
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
-    token: ''
-  },
-  mutations: {
-  },
-  actions: {
-  },
+export class Store extends VuexModule {
+  token: string = ''
+
+  expiresDate: string = ''
+}
+
+export const store = new Vuex.Store({
   modules: {
+    ...extractVuexModule(Store),
   },
+  plugins: [PersistedState()]
 });
+
+export const vuexModule = {
+  store: createProxy(store, Store),
+};

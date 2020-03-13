@@ -2,7 +2,7 @@
 .wrapper
   form
     img.logo(src='../../assets/images/logo.svg')
-    h1 {{message}}
+    h1 Войдите в систему
     input.login(placeholder='Логин' type='email' v-model.trim="$v.email.$model")
     span.error-email(v-if='!$v.email.required') Введите электронную почту
     span.error-email(v-else-if='!$v.email.email') Введите корректную электронную почту
@@ -16,8 +16,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DataService } from '@/service//methodsApi';
-import { SingInInterface } from '@/interfaces';
+// import { SingInInterface } from '@/interfaces';
 import { UserLogInData } from '@/store/logIn';
+import  { vuexModule } from '@/store';
 import Vuelidate from 'vuelidate'
 import { required, minLength, email, between } from 'vuelidate/lib/validators';
 
@@ -36,7 +37,7 @@ Vue.use(Vuelidate);
   }
 })
 export default class Authorization extends Vue {
-    message = 'Войдите в систему'
+    vuexStore = vuexModule.store
 
     dataService: DataService = new DataService()
 
@@ -45,10 +46,6 @@ export default class Authorization extends Vue {
     email = ''
 
     password = ''
-
-    errEmail = ''
-
-    errPass = ''
 
     logIn(): void {
       if (this.checkInput()) {
@@ -65,8 +62,6 @@ export default class Authorization extends Vue {
     }
 
     checkInput(): boolean {
-      this.errEmail = '';
-      this.errPass = '';
       if (this.email === '' || this.password === '') {
         if (this.email === '' || this.email === ' ') {
           // this.errEmail = 'Введите адрес электронной почты';
@@ -84,8 +79,6 @@ export default class Authorization extends Vue {
         // this.$router.push('/patients');
         this.$router.push('/patient/card');
       }
-      // console.log(this.message);
-      // console.log(data.status);
     }
 
     errorLogIn(message: any) {
@@ -93,7 +86,6 @@ export default class Authorization extends Vue {
       if (message.response !== undefined) {
         if (message.response.status === 422
         || message.response.status === 401) {
-          // this.errPass = 'Неверные почта или пароль';
         }
       }
     }
@@ -142,14 +134,14 @@ export default class Authorization extends Vue {
       line-height: 24px;
     }
     .login {
-      margin-bottom: 5px;
+      margin-bottom: 20px;
     }
     .error-email {
       margin-bottom: 10px;
       color: red;
     }
     .password {
-      margin-bottom: 5px;
+      margin-bottom: 45px;
     }
     .error-pass {
       margin-bottom: 40px;

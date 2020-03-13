@@ -1,11 +1,8 @@
 import ax from '@/service/api';
-import { SingInInterface } from '@/interfaces'
-import { UserLogInData } from '@/store/logIn';
+import { vuexModule } from '@/store';
 
 export class DataService {
   axs = ax;
-
-  public tokens = '';
   
   public sendDataAutorization(data: any, succes: (logData: any) => void, err: (error: any) => void) {
     this.axs.post('api/auth/login', data, {
@@ -18,8 +15,10 @@ export class DataService {
     }).then((response) => {
       console.log(response);
       const respData: any = response;
-      this.tokens = response.data.access_token;
-      console.log(this.tokens);
+      vuexModule.store.token = response.data.access_token;
+      vuexModule.store.expiresDate = response.data.expires_at;
+      console.log(vuexModule.store.expiresDate);
+      console.log(response.data.access_token);
       succes(respData);
     }).catch((error) => {
       err(error);
@@ -28,12 +27,12 @@ export class DataService {
   }
 
   public getUserProfile(succes: (logData: any) => void, err: (error: any) => void) {
-    console.log(this.tokens);
-    this.axs.get('/api/operator/patients', {
+    // console.log(vuexModule.store.token);
+    this.axs.get('/api/auth/user', {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${this.tokens}`,
+        Authorization: `Bearer ${vuexModule.store.token}`,
         'X-localization': 'uk',
       }
     })
@@ -45,6 +44,25 @@ export class DataService {
       .catch((error) => {
         // handle error
         err(error);
+      });
+  }
+
+  public logOut() {
+    this.axs.get('/api/auth/logout', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${vuexModule.store.token}`,
+        'X-localization': 'uk',
+      }
+    })
+      .then((response) => {
+       console.log(response);
+       vuexModule.store.token = '';
+       vuexModule.store.expiresDate = ''
+      })
+      .catch((error) => {
+       console.log(error);
       });
   }
 }
