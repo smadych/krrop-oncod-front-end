@@ -3,10 +3,12 @@
   form
     img.logo(src='../../assets/images/logo.svg')
     h1 {{message}}
-    input.login(placeholder='Логин' type='email' v-model='email')
-    span.error-email {{errEmail}}
+    input.login(placeholder='Логин' type='email' v-model.trim="$v.email.$model")
+    span.error-email(v-if='!$v.email.required') Введите электронную почту
+    span.error-email(v-else-if='!$v.email.email') Введите корректную электронную почту
     input.password(placeholder='Пароль' type='password' v-model='password')
-    span.error-pass {{errPass}}
+    span.error-pass(v-if='!$v.password.required') Введите пароль
+    span.error-pass(v-else-if='!$v.password.minLength') Пароль слишком короткий
     button(@click='logIn') Войти
     a Забыли пароль?
 </template>
@@ -16,8 +18,23 @@ import { Component, Vue } from 'vue-property-decorator';
 import { DataService } from '@/service//methodsApi';
 import { SingInInterface } from '@/interfaces';
 import { UserLogInData } from '@/store/logIn';
+import Vuelidate from 'vuelidate'
+import { required, minLength, email, between } from 'vuelidate/lib/validators';
 
-@Component({})
+Vue.use(Vuelidate);
+
+@Component({
+  validations: {
+    email: {
+      email,
+      required,
+    },
+    password: {
+      required,
+      minLength: minLength(4),
+    }
+  }
+})
 export default class Authorization extends Vue {
     message = 'Войдите в систему'
 
@@ -39,9 +56,9 @@ export default class Authorization extends Vue {
           email: this.email,
           password: this.password,
         };
-        if (this.email === '200') {
-          this.$router.push('/patient/card');
-        }
+        // if (this.email === '200') {
+        //   this.$router.push('/patient/card');
+        // }
         this.dataService.sendDataAutorization(JSON.stringify(userData),
           this.logData, this.errorLogIn);
       }
@@ -52,10 +69,10 @@ export default class Authorization extends Vue {
       this.errPass = '';
       if (this.email === '' || this.password === '') {
         if (this.email === '' || this.email === ' ') {
-          this.errEmail = 'Введите адрес электронной почты';
+          // this.errEmail = 'Введите адрес электронной почты';
         }
         if (this.password === '' || this.password === ' ') {
-          this.errPass = 'Введите пароль';
+          // this.errPass = 'Введите пароль';
         }
         return false;
       }
@@ -76,7 +93,7 @@ export default class Authorization extends Vue {
       if (message.response !== undefined) {
         if (message.response.status === 422
         || message.response.status === 401) {
-          this.errPass = 'Неверные почта или пароль';
+          // this.errPass = 'Неверные почта или пароль';
         }
       }
     }
