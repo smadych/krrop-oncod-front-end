@@ -57,7 +57,6 @@ export default class PatientCard extends Vue {
         margin: 16px 0 16px 0;
     }
     .id-patient {
-        // margin-bottom: 5px;
         margin: 0;
         margin-bottom: 5px;
         font-size: 14px;
@@ -88,8 +87,6 @@ export default class PatientCard extends Vue {
         .region {
             margin: 0;
             margin-top: 3px;
-            // display: block;
-            // vertical-align: middle;
         }
     }
     .diagnosis {
