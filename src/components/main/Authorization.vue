@@ -4,11 +4,14 @@
     img.logo(src='../../assets/images/logo.svg')
     h1 Войдите в систему
     input.login(placeholder='Логин' type='email' v-model.trim="$v.email.$model")
-    span.error-email(v-if='!$v.email.required') Введите электронную почту
-    span.error-email(v-else-if='!$v.email.email') Введите корректную электронную почту
+    .error-email-wrap
+      span.error-email(v-if='!$v.email.required && showErrorRequired') Введите электронную почту
+      span.error-email(v-else-if='!$v.email.email') Введите корректную электронную почту
     input.password(placeholder='Пароль' type='password' v-model='password')
-    span.error-pass(v-if='!$v.password.required') Введите пароль
-    span.error-pass(v-else-if='!$v.password.minLength') Пароль слишком короткий
+    .error-password-wrap
+      span.error-pass(v-if='!$v.password.required && showErrorRequired') Введите пароль
+      span.error-pass(v-else-if='!$v.password.minLength') Пароль слишком короткий
+      span.error-pass(v-if='showErrorEmailPass') Неверные почта или пароль
     button(@click='logIn') Войти
     a Забыли пароль?
 </template>
@@ -47,7 +50,12 @@ export default class Authorization extends Vue {
 
     password = ''
 
+    showErrorRequired: boolean = false
+
+    showErrorEmailPass: boolean = false
+
     logIn(): void {
+      this.showErrorRequired = true;
       if (this.checkInput()) {
         const userData: UserLogInData = {
           email: this.email,
@@ -77,7 +85,7 @@ export default class Authorization extends Vue {
     logData(data: any) {
       if (data.status === 200) {
         // this.$router.push('/patients');
-        this.$router.push('/patient/card');
+        this.$router.push('/patientcard');
       }
     }
 
@@ -86,6 +94,7 @@ export default class Authorization extends Vue {
       if (message.response !== undefined) {
         if (message.response.status === 422
         || message.response.status === 401) {
+          this.showErrorEmailPass = true;
         }
       }
     }
@@ -134,18 +143,26 @@ export default class Authorization extends Vue {
       line-height: 24px;
     }
     .login {
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
     }
-    .error-email {
-      margin-bottom: 10px;
-      color: red;
+    .error-email-wrap {
+      height: 25px;
+      .error-email {
+        display: block;
+        margin-top: 5px;
+        color: red;
+      }
     }
     .password {
-      margin-bottom: 45px;
+      // margin-bottom: 45px;
     }
-    .error-pass {
-      margin-bottom: 40px;
-      color: red;
+    .error-password-wrap {
+      height: 48px;
+      .error-pass {
+        display: block;
+        margin-top: 5px;
+        color: red;
+      }
     }
     button, a:hover {
       cursor: pointer;

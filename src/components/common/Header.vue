@@ -58,7 +58,7 @@ header {
         display: flex;
         flex-direction: row;
         flex-flow: wrap;
-        padding: 0 30px 0 30px;
+        margin: 0 30px 0 30px;
         width: 100%;
     .logo {
         margin: 0 55px 0 0;

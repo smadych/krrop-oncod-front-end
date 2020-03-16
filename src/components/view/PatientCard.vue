@@ -11,10 +11,11 @@
         p.diagnosis ЗН молочной железы неуточненной части
     .navigation-description
         nav
-            a Личные данные
-            a Лечение
-            a Осмотр и патронаж
-            a Наблюдение
+            router-link(to="/patientcard/selfdata") Личные данные
+            router-link(to="/patientcard/treatment") Лечение
+            router-link(to="/patientcard/inspection") Осмотр и патронаж
+            router-link(to="/patientcard/observation") Наблюдение
+    router-view
 </template>
 
 <script lang="ts">
@@ -43,7 +44,7 @@ export default class PatientCard extends Vue {
 <style lang="scss" scoped>
 
 .info-section {
-    padding: 0 30px 0 30px;
+    margin: 0 30px 0 30px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -74,6 +75,7 @@ export default class PatientCard extends Vue {
     .region-wrap {
         display: flex;
         flex-direction: row;
+        flex-flow: wrap;
         margin: 0;
         .status-patient {
             color: white;
@@ -103,23 +105,30 @@ export default class PatientCard extends Vue {
 
 .navigation-description {
     border-bottom: 1px solid #D6D6E0;
-    padding: 0 30px 0 30px;
+    margin: 0 30px 0 30px;
     display: flex;
-    padding-bottom: 14px;
     flex-direction: column;
     align-items: flex-start;
     nav {
         display: flex;
         flex-flow: wrap;
         a {
+            box-sizing: border-box;
+            color: #5F6063;
+            text-decoration: none;
             margin-right: 80px;
             padding-bottom: 14px;
             &:hover {
+                margin-bottom: -2px;
                 border-bottom: 2px solid #5555FF;
             }
         }
         a:last-child {
             margin: 0;
+            &:hover {
+                margin-bottom: -2px;
+                border-bottom: 2px solid #5555FF;
+            }
         }
     }
 }
