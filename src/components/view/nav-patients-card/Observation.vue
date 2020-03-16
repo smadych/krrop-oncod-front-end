@@ -31,9 +31,9 @@ export default class Observation extends Vue {
         border-collapse: collapse;
         thead {
             background-color: #5555FF;
-            color: white;
             margin: 0;
             th {
+                color: white;
                 text-align: left;
                 height: 40px;
                 font-size: 13px;

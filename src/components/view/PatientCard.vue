@@ -11,10 +11,14 @@
         p.diagnosis ЗН молочной железы неуточненной части
     .navigation-description
         nav
-            router-link(to="/patientcard/selfdata") Личные данные
-            router-link(to="/patientcard/treatment") Лечение
-            router-link(to="/patientcard/inspection") Осмотр и патронаж
-            router-link(to="/patientcard/observation") Наблюдение
+            router-link(to="/patientcard/selfdata"
+            :class="{ active: activeTab === 'selfdata' }") Личные данные
+            router-link(to="/patientcard/treatment"
+            :class="{ active: activeTab === 'treatment'}") Лечение
+            router-link(to="/patientcard/inspection"
+            :class="{ active: activeTab === 'inspection'}") Осмотр и патронаж
+            router-link(to="/patientcard/observation"
+            :class="{ active: activeTab === 'observation'}") Наблюдение
     router-view
 </template>
 
@@ -33,6 +37,8 @@ export default class PatientCard extends Vue {
     name = ''
 
     dataService: DataService = new DataService()
+
+    activeTab: string = ''
 
     error(message: any) {
       console.log(this.name);
@@ -65,6 +71,8 @@ export default class PatientCard extends Vue {
     }
     .patient-name {
         color: #000000;
+        // justify-content: flex-start;
+        text-align: start;
         font-size: 24px;
         font-weight: 600;
         line-height: 28px;
@@ -110,21 +118,40 @@ export default class PatientCard extends Vue {
         display: flex;
         flex-flow: wrap;
         a {
+            // border: 1px solid black;
             box-sizing: border-box;
             color: #5F6063;
             text-decoration: none;
             margin-right: 80px;
             padding-bottom: 14px;
             &:hover {
+                color: black;
                 margin-bottom: -2px;
                 border-bottom: 2px solid #5555FF;
+                &:last-child {
+                    margin: 0;
+                    &:hover {
+                    color: black;
+                    margin-bottom: -2px;
+                    border-bottom: 2px solid #5555FF;
+                    }
+                }
             }
         }
-        a:last-child {
-            margin: 0;
-            &:hover {
-                margin-bottom: -2px;
-                border-bottom: 2px solid #5555FF;
+    .router-link-exact-active {
+        color: black;
+        margin-bottom: -2px;
+        border-bottom: 2px solid #5555FF;
+    }
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    nav {
+        a {
+            margin-bottom: 10px !important;
+            &:last-child {
+                margin-bottom: 0 !important;
             }
         }
     }

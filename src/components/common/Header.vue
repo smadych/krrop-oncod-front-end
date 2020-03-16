@@ -2,7 +2,8 @@
 header
     .wrapper-header
         img.logo(src='../../assets/images/logo.svg' @click='logOut')
-        input.search(placeholder='Пошук по пацієнтам')
+        .search-wrap
+            input.search(placeholder='Пошук по пацієнтам')
         .full-name
             h5.full-name {{fullName}}
             span.initials {{letters}}
@@ -44,6 +45,7 @@ export default class Header extends Vue {
 
     logOut() {
         this.dataService.logOut();
+        this.$router.push('/login');
     }
 }
 </script>
@@ -68,19 +70,22 @@ header {
         display: inline-block;
         vertical-align: middle;
     }
-    .search {
-        box-sizing: border-box;
-        outline: none;
-        background-color: #F3F3F7;
-        padding: 0 100px 0 35px;
-        height: 40px;
-        margin: auto 0;
-        border-radius: 5px;
-        border: none;
-        background-image: url('../../assets/images/magnifying-glass.svg');
-        background-repeat: no-repeat;
-        background-position: 10px 10px;
-        background-size: 20px;
+    .search-wrap {
+        display: flex;
+        .search {
+            width: 100%;
+            outline: none;
+            background-color: #F3F3F7;
+            padding: 0 100px 0 35px;
+            height: 40px;
+            margin: auto 0;
+            border-radius: 5px;
+            border: none;
+            background-image: url('../../assets/images/magnifying-glass.svg');
+            background-repeat: no-repeat;
+            background-position: 10px 10px;
+            background-size: 20px;
+        }
     }
     .initials {
         margin: auto 0 auto 10px;
@@ -101,6 +106,12 @@ header {
             display: inline-block;
             vertical-align: middle;
     }
+    }
+}
+
+@media only screen and (max-width: 660px) {
+    .logo, .search {
+        margin-top: 10px !important;
     }
 }
 

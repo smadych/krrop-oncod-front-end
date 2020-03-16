@@ -99,12 +99,17 @@ form {
 
     .checkbox-wrap {
         display: flex;
-        // justify-content: space-between;
+        justify-content: space-between;
+        flex-flow: wrap;
+        margin-right: 70px;
         div {
-            margin-right: 70px;
+            // margin-right: 70px;
             color: #9D9DA7;
-            input {
+            input[type="checkbox"] {
                 margin-right: 5px;
+                box-shadow: none;
+                border-color: #bbb;
+                background-color: #ddd;
             }
         }
     }
@@ -120,6 +125,7 @@ form {
     }
     input {
         border: none;
+        outline: none;
     }
 }
 </style>
