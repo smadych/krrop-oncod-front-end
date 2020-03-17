@@ -5,13 +5,11 @@ export interface SingInInterface {
 }
 
 export enum Status {
-    identificator = 'идентиф',
+    identificator = 'Идентиф',
     name = 'ФИО',
-    region = 'регион',
+    region = 'Регион',
     dateOfBirdth = 'Дата рождения',
     diagnosis = 'Диагноз',
-    lastDateInspection = 'Дата посл.осмотра'
+    lastDateInspection = 'Дата посл.осмотра',
+    status = 'Статус'
 }
-// // Created just for exporting enum object. Current const variable doesn't use.
-// const space = '';
-// export default space;

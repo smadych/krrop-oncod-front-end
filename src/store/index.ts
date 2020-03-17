@@ -17,6 +17,8 @@ export class Store extends VuexModule {
   token: string = ''
 
   expiresDate: string = ''
+
+  listOfPatients: any = ''
 }
 
 export const store = new Vuex.Store({

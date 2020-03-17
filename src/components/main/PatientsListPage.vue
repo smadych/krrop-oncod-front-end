@@ -8,16 +8,28 @@
             input(placeholder='имя')
             input(placeholder='регион')
             input(placeholder='статус')
+    //- button(@click='getPatientsList') get patients
     section.table-patients-wrapper
-        thead
-            th(v-for='stat in statusArr' :key='stat') {{stat}}
-        tbody
+        table
+            thead
+                th(v-for='stat in statusArr' :key='stat') {{stat}}
+            tbody
+                tr(v-for='(patient, index) in vuexStore.listOfPatients.data.data' :key='index')
+                    td {{patient.id}}
+                    td {{patient.first_name}} {{patient.middle_name}} {{patient.last_name}}
+                    td {{patient.region_id}}
+                    td {{patient.birthday}}
+                    td {{patient.disability}}
+                    td {{patient.disposal_date}}
+                    td none
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Status } from '@/interfaces';
 import Header from '../common/Header.vue';
+import { DataService } from '@/service/methodsApi';
+import { vuexModule } from '@/store';
 
 @Component({
     components: {
@@ -26,7 +38,18 @@ import Header from '../common/Header.vue';
 })
 export default class Authorization extends Vue {
 
+    vuexStore = vuexModule.store
+    
+    dataService: DataService = new DataService()
+    
     statusArr = Status
+
+    getPatientsList() {
+        console.log(this.vuexStore.listOfPatients.data.data.length);
+        for (let i = 0; i < this.vuexStore.listOfPatients.data.data.length; i+=1) {
+            console.log(this.vuexStore.listOfPatients.data.data[i]);
+        }
+    }
 }
 </script>
 
@@ -48,17 +71,53 @@ export default class Authorization extends Vue {
             line-height: 24px;
         }
         .filters {
+            // margin-right: 50px;
+            margin-bottom: 20px;
             input {
                 box-sizing: border-box;
+                margin-bottom: 20px;
+                max-width: 180px;
                 height: 30px;
-                padding: 0 30px 0 10px;
+                padding: 0 0 0 10px;
                 margin-right: 15px;
                 border: 1px solid #DCDCDC;
             }
         }
     }
     .table-patients-wrapper {
-        margin: 0 30px 0 30px;
+        margin: 0 30px 30px 30px;
+        table {
+            width: 100%;
+            text-align: start;
+            border-collapse: collapse;
+            thead {
+                th {
+                    padding-bottom: 15px;
+                    margin-top: 30px;
+                    text-align: start;
+                    opacity: 0.8;
+                    color: #000000;
+                    font-size: 13px;
+                    // font-weight: 500;
+                    line-height: 15px;
+                }
+            }
+            tbody {
+                tr {
+                    &:hover {
+                        background-color: #F6F6F6;
+                    }
+                    border-bottom: 1px solid #DCDCDC;
+                    height: 55px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .table-patients-wrapper {
+        overflow: auto;
     }
 }
 </style>

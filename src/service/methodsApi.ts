@@ -17,8 +17,9 @@ export class DataService {
       const respData: any = response;
       vuexModule.store.token = response.data.access_token;
       vuexModule.store.expiresDate = response.data.expires_at;
-      console.log(vuexModule.store.expiresDate);
-      console.log(response.data.access_token);
+      this.getPatients();
+      // console.log(vuexModule.store.expiresDate);
+      // console.log(response.data.access_token);
       succes(respData);
     }).catch((error) => {
       err(error);
@@ -27,7 +28,6 @@ export class DataService {
   }
 
   public getUserProfile(succes: (logData: any) => void, err: (error: any) => void) {
-    // console.log(vuexModule.store.token);
     this.axs.get('/api/auth/user', {
       headers: {
         'Content-Type': 'application/json',
@@ -64,6 +64,24 @@ export class DataService {
       .catch((error) => {
        console.log(error);
       });
+  }
+
+  getPatients() {
+    this.axs.get('/api/operator/patients', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${vuexModule.store.token}`,
+        'X-localization': 'uk',
+      }
+    })
+    .then((response) => {
+      console.log(response);
+      vuexModule.store.listOfPatients = response;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 }
 
