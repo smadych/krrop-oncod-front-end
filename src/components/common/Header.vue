@@ -89,6 +89,7 @@ header {
     }
     .initials {
         margin: auto 0 auto 10px;
+        color: #fff;
         padding: 8px 7px;
         border-radius: 100%;
         background-color: #5555FF;

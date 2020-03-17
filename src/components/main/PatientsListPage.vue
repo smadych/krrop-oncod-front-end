@@ -34,26 +34,31 @@ export default class Authorization extends Vue {
 * {
 //   border: 1px solid black;
 }
-.filter-section {
-    display: flex;
-    padding: 0 30px 0 30px;
-    align-items: flex-start;
-    flex-direction: column;
-    h4 {
-        padding: 0;
-        margin: 20px 0;
-        font-size: 21px;
-        font-weight: 500;
-        line-height: 24px;
-    }
-    .filters {
-        input {
-            box-sizing: border-box;
-            height: 30px;
-            padding: 0 30px 0 10px;
-            margin-right: 15px;
-            border: 1px solid #DCDCDC;
+.wrapper-patients {
+    .filter-section {
+        display: flex;
+        margin: 0 30px 0 30px;
+        align-items: flex-start;
+        flex-direction: column;
+        h4 {
+            padding: 0;
+            margin: 20px 0;
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 24px;
         }
+        .filters {
+            input {
+                box-sizing: border-box;
+                height: 30px;
+                padding: 0 30px 0 10px;
+                margin-right: 15px;
+                border: 1px solid #DCDCDC;
+            }
+        }
+    }
+    .table-patients-wrapper {
+        margin: 0 30px 0 30px;
     }
 }
 </style>
