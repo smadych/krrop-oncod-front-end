@@ -9,7 +9,8 @@
                 tr(v-for="(obj, index) in temporaryData" :key="index")
                     td
                         button.plus-btn 
-                    td(v-for="(data, indexData) in temporaryData[index]" :key="indexData") {{data}}  
+                    td(v-for="(data, indexData) in temporaryData[index]" :key="indexData") {{data}}
+        .empty
 </template>
 
 <script lang="ts">
@@ -27,6 +28,7 @@ export default class Treatment extends Vue {
 <style lang="scss" scoped>
 .table-wrap {
     margin: 30px 30px 0 30px;
+    // overflow: auto;
     table {
         margin: 0 auto;
         width: 100%;
@@ -71,5 +73,15 @@ export default class Treatment extends Vue {
             }
         }
     }
+}
+
+@media only screen and (max-width: 800px) {
+    .table-wrap {
+        overflow: auto;
+    }
+}
+
+.empty {
+    height: 40px;
 }
 </style>

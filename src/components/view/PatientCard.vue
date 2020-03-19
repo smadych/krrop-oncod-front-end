@@ -72,7 +72,7 @@ export default class PatientCard extends Vue {
     .patient-name {
         color: #000000;
         // justify-content: flex-start;
-        text-align: start;
+        text-align: left;
         font-size: 24px;
         font-weight: 600;
         line-height: 28px;
@@ -99,7 +99,6 @@ export default class PatientCard extends Vue {
     }
     .diagnosis {
         width: fill-available;
-        // width: available;
         text-align: left;
         padding: 10px 0 10px 20px;
         border-radius: 3px;
@@ -119,6 +118,7 @@ export default class PatientCard extends Vue {
         flex-flow: wrap;
         a {
             // border: 1px solid black;
+            text-align: left;
             box-sizing: border-box;
             color: #5F6063;
             text-decoration: none;
@@ -129,7 +129,6 @@ export default class PatientCard extends Vue {
                 margin-bottom: -2px;
                 border-bottom: 2px solid #5555FF;
                 &:last-child {
-                    margin: 0;
                     &:hover {
                     color: black;
                     margin-bottom: -2px;
@@ -149,11 +148,18 @@ export default class PatientCard extends Vue {
 @media only screen and (max-width: 810px) {
     nav {
         a {
-            margin-bottom: 10px !important;
+            // margin-bottom: 10px !important;
             &:last-child {
-                margin-bottom: 0 !important;
+                // margin-bottom: 0 !important;
             }
         }
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    nav {
+        flex-direction: column;
+        flex-flow: nowrap;
     }
 }
 
@@ -162,23 +168,21 @@ export default class PatientCard extends Vue {
     .wrapper-card {
         display: flex;
         flex-direction: column;
-        .info-section {
-            display: flex;
-            // align-items: flex-start !important;
-            // flex-direction: row;
-            flex-flow: wrap;
+        .info-section {     
             .link-back {
-                // justify-content: start;
                 text-align: left;
             }
             .id-patient {
 
             }
             .patient-name {
-                // text-align: start;
+                width: 100%;
                 text-align: left;
             }
             .region-wrap {
+                display: flex;
+                flex-flow: wrap;
+                width: 100%;
                 .status-patient {
 
                 }
@@ -188,13 +192,23 @@ export default class PatientCard extends Vue {
             }
             .diagnosis {
                 width: 100%;
+                padding: 10px 0 10px 0;
+                box-sizing: border-box;
+                padding-left: 20px;
             }
         }
         .navigation-description {
             nav {
-
+                width: 100%;
             }
         }
+    }
+}
+
+@supports (-ms-ime-align:auto) {
+    .diagnosis {
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 </style>

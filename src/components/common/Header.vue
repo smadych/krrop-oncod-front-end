@@ -65,8 +65,6 @@ header {
         width: 100%;
     .logo {
         margin: 0 55px 0 0;
-        width: 70px;
-        height: 45px;
     }
     .full-name-wrap {
         margin-left: auto;
@@ -82,7 +80,7 @@ header {
         .search {
             width: 100%;
             outline: none;
-            color: #000;
+            color: 8F#000;
             opacity: 56%;
             background-color: #F3F3F7;
             padding: 0 100px 0 35px;
@@ -156,6 +154,8 @@ header {
     .wrapper-header {
     //   display: flex;
         .logo {
+            width: 70px;
+            height: 45px;
         }
     .search-wrap {
         // display: flex;

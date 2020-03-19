@@ -19,7 +19,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DataService } from '@/service//methodsApi';
-// import { SingInInterface } from '@/interfaces';
 import { UserLogInData } from '@/store/logIn';
 import  { vuexModule } from '@/store';
 import Vuelidate from 'vuelidate'
@@ -61,23 +60,19 @@ export default class Authorization extends Vue {
           email: this.email,
           password: this.password,
         };
-        if (this.email === '200@200.com') {
-          this.vuexStore.token = '123';
-          this.$router.push('/patientcard');
-        }
-        // this.dataService.sendDataAutorization(JSON.stringify(userData),
-        //   this.logData, this.errorLogIn);
+        // if (this.email === '200@200.com') {
+        //   this.vuexStore.token = '123';
+        //   this.$router.push('/patientcard');
+        // }
+        this.dataService.sendDataAutorization(JSON.stringify(userData),
+          this.logData, this.errorLogIn);
       }
     }
 
     checkInput(): boolean {
       if (this.email === '' || this.password === '') {
-        if (this.email === '' || this.email === ' ') {
-          // this.errEmail = 'Введите адрес электронной почты';
-        }
-        if (this.password === '' || this.password === ' ') {
-          // this.errPass = 'Введите пароль';
-        }
+        if (this.email === '' || this.email === ' ')
+        if (this.password === '' || this.password === ' ')
         return false;
       }
       return true;
@@ -138,6 +133,7 @@ export default class Authorization extends Vue {
   }
     input {
       border: 1px solid #D6D6E0;
+      outline: none;
       height: 50px;
       padding: 10px;
       width: 100%;
@@ -157,9 +153,6 @@ export default class Authorization extends Vue {
         margin-top: 5px;
         color: red;
       }
-    }
-    .password {
-      // margin-bottom: 45px;
     }
     .error-password-wrap {
       height: 48px;

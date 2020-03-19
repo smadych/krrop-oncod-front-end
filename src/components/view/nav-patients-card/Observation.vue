@@ -10,7 +10,7 @@
                     td
                         button.triangle-btn
                     td(v-for="(data, indexData) in temporaryData[index]" :key="indexData") {{data}}
-                    
+        .empty
 </template>
 
 <script lang="ts">
@@ -70,6 +70,14 @@ export default class Observation extends Vue {
                 outline: none;
             }
         }
+    }
+}
+.empty {
+    height: 40px;
+}
+@media only screen and (max-width: 800px) {
+    .table-wrap {
+        overflow: auto;
     }
 }
 </style>

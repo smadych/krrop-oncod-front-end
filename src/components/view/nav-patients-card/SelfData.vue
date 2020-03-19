@@ -75,13 +75,12 @@ form {
             .gender {
                 // max-width: 185px;
             }
-            .birdth-date {
-                border: 1px solid #D6D6E0;
-                padding-left: 15px;
-                margin-top: 6px !important;
-                // max-width: 220px;
-                height: 41px;
-            }
+                .birdth-date {
+                    border: 1px solid #D6D6E0;
+                    padding-left: 15px;
+                    margin-top: 6px !important;
+                    height: 41px;
+                }
     }
     .address-wrap {
         display: flex;
@@ -207,6 +206,17 @@ form {
         &:hover {
             border-color: #888;
         }
+    }
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    fieldset {
+        position: relative;
+    }
+    legend {
+        display: inline-block;
+        position: absolute;
+        top: -9px;
+        background-color: #fff;
     }
 }
 </style>
