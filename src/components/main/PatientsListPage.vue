@@ -8,7 +8,6 @@
             input(placeholder='имя')
             input(placeholder='регион')
             input(placeholder='статус')
-    //- button(@click='getPatientsList') get patients
     section.table-patients-wrapper
         table
             thead

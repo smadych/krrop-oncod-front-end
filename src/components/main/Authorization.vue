@@ -61,11 +61,12 @@ export default class Authorization extends Vue {
           email: this.email,
           password: this.password,
         };
-        // if (this.email === '200') {
-        //   this.$router.push('/patient/card');
-        // }
-        this.dataService.sendDataAutorization(JSON.stringify(userData),
-          this.logData, this.errorLogIn);
+        if (this.email === '200@200.com') {
+          this.vuexStore.token = '123';
+          this.$router.push('/patientcard');
+        }
+        // this.dataService.sendDataAutorization(JSON.stringify(userData),
+        //   this.logData, this.errorLogIn);
       }
     }
 
@@ -122,6 +123,10 @@ export default class Authorization extends Vue {
     flex-direction: column;
     width: 320px;
     padding: 0 10px 0 10px;
+    .logo {
+      width: 70px;
+      margin: 0 auto;
+    }
   h1 {
     font-size: 24px;
     font-weight: 700;

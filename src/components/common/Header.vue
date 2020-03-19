@@ -4,9 +4,9 @@ header
         img.logo(src='../../assets/images/logo.svg' @click='logOut')
         .search-wrap
             input.search(placeholder='Пошук по пацієнтам')
-        .full-name
-            h5.full-name {{fullName}}
-            span.initials {{letters}}
+        .full-name-wrap
+            h5.full-name {{fullName || 'Bob Carry'}}
+            span.initials {{letters || 'CC'}}
 </template>
 
 <script lang="ts">
@@ -52,6 +52,7 @@ export default class Header extends Vue {
 
 <style lang="scss" scoped>
 header {
+    // font-family: Roboto;
     display: flex;
     flex-direction: row;
     // flex-flow: wrap;
@@ -64,17 +65,25 @@ header {
         width: 100%;
     .logo {
         margin: 0 55px 0 0;
+        width: 70px;
+        height: 45px;
     }
-    .full-name {
+    .full-name-wrap {
         margin-left: auto;
         display: inline-block;
         vertical-align: middle;
+        .full-name {
+            display: inline-block;
+            vertical-align: middle;
+        }
     }
     .search-wrap {
         display: flex;
         .search {
             width: 100%;
             outline: none;
+            color: #000;
+            opacity: 56%;
             background-color: #F3F3F7;
             padding: 0 100px 0 35px;
             height: 40px;
@@ -83,8 +92,8 @@ header {
             border: none;
             background-image: url('../../assets/images/magnifying-glass.svg');
             background-repeat: no-repeat;
-            background-position: 10px 10px;
-            background-size: 20px;
+            background-position: 10px 12px;
+            background-size: 15px;
         }
     }
     .initials {
@@ -114,6 +123,9 @@ header {
     .logo, .search {
         margin-top: 10px !important;
     }
+    .full-name-wrap {
+        margin: 0 auto;
+    }
 }
 
 @media only screen and (max-width: 520px) {
@@ -124,5 +136,44 @@ header {
 .table-patients-wrapper {
     display: block;
     padding: 0 30px 0 30px;
+}
+
+// for Firefox
+@-moz-document url-prefix() {
+  .wrapper-header {
+      display: flex;
+    .search-wrap {
+        display: flex;
+      .search {
+       
+        }
+    }
+  }     
+}
+
+// for IE
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .wrapper-header {
+    //   display: flex;
+        .logo {
+        }
+    .search-wrap {
+        // display: flex;
+      .search {
+            background-position: -55px 10px !important;
+            background-size: 150px !important;
+        }
+    }
+  }
+  @media only screen and (max-width: 660px) {
+    .logo, .search {
+        margin-top: 10px !important;
+    }
+    .wrapper-header {
+        .full-name-wrap {
+            margin-right: 50%;
+        }
+    }
+}
 }
 </style>

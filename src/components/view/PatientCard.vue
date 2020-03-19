@@ -156,4 +156,45 @@ export default class PatientCard extends Vue {
         }
     }
 }
+
+// for IE
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .wrapper-card {
+        display: flex;
+        flex-direction: column;
+        .info-section {
+            display: flex;
+            // align-items: flex-start !important;
+            // flex-direction: row;
+            flex-flow: wrap;
+            .link-back {
+                // justify-content: start;
+                text-align: left;
+            }
+            .id-patient {
+
+            }
+            .patient-name {
+                // text-align: start;
+                text-align: left;
+            }
+            .region-wrap {
+                .status-patient {
+
+                }
+                .region {
+
+                }
+            }
+            .diagnosis {
+                width: 100%;
+            }
+        }
+        .navigation-description {
+            nav {
+
+            }
+        }
+    }
+}
 </style>

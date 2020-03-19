@@ -1,22 +1,22 @@
 <template lang="pug">
 form
     .self-data-wrap
-        fieldset.gender
-            legend Пол
-            select
-                option(value='женский') женский
-                option(value='мужской') мужской
-        input.birdth-date(placeholder='Дата рождения')
-        fieldset
-            legend Национальность
-            select.nationality
-                option(value='украинская') украинская
-                option(value='другая-страна') другая страна
-        fieldset
-            legend Житель
-            select.city
-                option(value='город') город
-                option(value='другое') другое
+            fieldset.gender
+                legend Пол
+                select
+                    option(value='женский') женский
+                    option(value='мужской') мужской
+            input.birdth-date(placeholder='Дата рождения')
+            fieldset
+                legend Национальность
+                select.nationality
+                    option(value='украинская') украинская
+                    option(value='другая-страна') другая страна
+            fieldset
+                legend Житель
+                select.city
+                    option(value='город') город
+                    option(value='другое') другое
     .address-wrap
         fieldset.locality
             legend Населенный пункт
@@ -58,7 +58,7 @@ export default class SelfData extends Vue {
 
 <style lang="scss" scoped>
 form {
-    margin: 25px 30px 0 30px;
+    margin: 25px 20px 0 30px;
     text-align: left;
     display: flex;
     flex-direction: column;;
@@ -67,36 +67,29 @@ form {
         flex-direction: row;
         flex-flow: wrap;
         // margin-bottom: 15px;
-        fieldset, input {
-            flex-grow: 1;
-            margin: 0 10px 15px 0;
-            min-width: 125px;
-            &:last-child {
-                margin: 0 0 15px 0;
+            fieldset, input {
+                flex-grow: 1;
+                min-width: 145px;
+                margin: 0 10px 15px 0;
             }
-        }
-        .gender {
-            max-width: 185px;
-        }
-        .birdth-date {
-            border: 1px solid #D6D6E0;
-            padding-left: 15px;
-            max-width: 185px;
-            height: 40px;
-            margin-top: 5px !important;
-        }
+            .gender {
+                // max-width: 185px;
+            }
+            .birdth-date {
+                border: 1px solid #D6D6E0;
+                padding-left: 15px;
+                margin-top: 6px !important;
+                // max-width: 220px;
+                height: 41px;
+            }
     }
     .address-wrap {
         display: flex;
         flex-flow: wrap;
         flex-direction: row;
-        // margin-bottom: 15px;
         fieldset {
             margin: 0 10px 15px 0;
             min-width: 125px;
-            &:last-child {
-                margin: 0 0 15px 0;
-            }
         }
         .locality {
             flex-grow: 1;
@@ -108,6 +101,10 @@ form {
 
     .profession-wrap {
         margin-bottom: 20px;
+        margin-right: 10px;
+        fieldset {
+            margin: 0;
+        }
     }
 
     .checkbox-wrap {
