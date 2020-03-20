@@ -5,11 +5,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import PatientPage from './main/PatientsListPage.vue';
 
 @Component({
   components: {
-    PatientPage,
   },
 })
 export default class HelloWorld extends Vue {

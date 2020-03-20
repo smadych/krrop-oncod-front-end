@@ -1,7 +1,7 @@
 // Describes data content which includes in each task
 export interface SingInInterface {
-    email: string
-    password: string
+    email: string;
+    password: string;
 }
 
 export enum Status {

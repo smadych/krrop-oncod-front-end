@@ -26,29 +26,21 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Status } from '@/interfaces';
-import Header from '../common/Header.vue';
 import { DataService } from '@/service/methodsApi';
 import { vuexModule } from '@/store';
+import Header from '../common/Header.vue';
 
 @Component({
-    components: {
-        Header,
-    }
+  components: {
+    Header,
+  },
 })
 export default class Authorization extends Vue {
-
     vuexStore = vuexModule.store
-    
-    dataService: DataService = new DataService()
-    
-    statusArr = Status
 
-    getPatientsList() {
-        console.log(this.vuexStore.listOfPatients.data.data.length);
-        for (let i = 0; i < this.vuexStore.listOfPatients.data.data.length; i+=1) {
-            console.log(this.vuexStore.listOfPatients.data.data[i]);
-        }
-    }
+    dataService: DataService = new DataService()
+
+    statusArr = Status
 }
 </script>
 
@@ -70,16 +62,18 @@ export default class Authorization extends Vue {
             line-height: 24px;
         }
         .filters {
-            // margin-right: 50px;
             margin-bottom: 20px;
             input {
                 box-sizing: border-box;
                 margin-bottom: 20px;
                 max-width: 180px;
-                height: 30px;
-                padding: 0 0 0 10px;
+                // height: 30px;
+                padding: 7px 0 7px 10px;
                 margin-right: 15px;
                 border: 1px solid #DCDCDC;
+                font-size: 14px;
+                letter-spacing: 0;
+                line-height: 16px;
             }
         }
     }
@@ -97,7 +91,6 @@ export default class Authorization extends Vue {
                     opacity: 0.8;
                     color: #000000;
                     font-size: 13px;
-                    // font-weight: 500;
                     line-height: 15px;
                 }
             }
@@ -114,7 +107,7 @@ export default class Authorization extends Vue {
     }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (max-width: 680px) {
     .table-patients-wrapper {
         overflow: auto;
     }

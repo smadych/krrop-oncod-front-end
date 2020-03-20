@@ -8,7 +8,7 @@
             tbody
                 tr(v-for="(obj, index) in temporaryData" :key="index")
                     td
-                        button.triangle-btn
+                        button.plus-btn
                     td(v-for="(data, indexData) in temporaryData[index]" :key="indexData") {{data}}
         .empty
 </template>
@@ -17,17 +17,18 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
-export default class Inspection extends Vue {
-    titleArr: string[] = ['Дата наблюдения', 'Вид наблюдения', 'Где наблюдался', 'Профиль', 'Клиническая группа']
+export default class Treatment extends Vue {
+    titleArr: string[] = ['Дата начала', 'Дата окончания', 'Вид лечения', 'Характер', 'Учреждение']
 
-    temporaryData: string[][] = [['10.10.2020', 'Амбулаторный прием', '4 гор. больница', 'неизвестно', '2'],
-    ['10.10.2020', 'Амбулаторный прием', '4 гор. больница', 'неизвестно', '2']]
+    temporaryData: string[][] = [['10.10.2020', '10.10.2020', 'Химиотеапия', 'Паллиативное', 'НИИ Гастроэнторология'],
+      ['10.10.2020', '10.10.2020', 'Химиотеапия', 'Паллиативное', 'НИИ Гастроэнторология']]
 }
 </script>
 
 <style lang="scss" scoped>
 .table-wrap {
     margin: 30px 30px 0 30px;
+    // overflow: auto;
     table {
         margin: 0 auto;
         width: 100%;
@@ -58,12 +59,13 @@ export default class Inspection extends Vue {
                 color: #5F6063;
                 text-align: left;
             }
-            .triangle-btn {
+            .plus-btn {
                 width: 16px;
                 height: 16px;
                 background-color: #fff;
-                border: none;
-                background-image: url('../../../assets/images/down-btn.svg');
+                border: 1px solid #D6D6E0;
+                border-radius: 2px;
+                background-image: url('../../assets/images/iconmonstr-plus-thin.svg');
                 background-repeat: no-repeat, repeat;
                 background-position: center top 50%, 0 0;
                 background-size: .55em auto, 200%;
@@ -72,12 +74,14 @@ export default class Inspection extends Vue {
         }
     }
 }
-.empty {
-    height: 40px;
-}
+
 @media only screen and (max-width: 800px) {
     .table-wrap {
         overflow: auto;
     }
+}
+
+.empty {
+    height: 40px;
 }
 </style>

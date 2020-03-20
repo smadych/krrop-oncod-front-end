@@ -18,44 +18,36 @@ import { vuexModule } from '../../store';
 export default class Header extends Vue {
     dataService: DataService = new DataService()
 
-    fullName: string = ''
+    fullName = ''
 
-    letters: string = ''
+    letters = ''
 
     mounted() {
-        console.log(vuexModule.store.token);
-        console.log(vuexModule.store.expiresDate);
-        this.dataService.getUserProfile(this.getFullName, this.error)
+      console.log(vuexModule.store.token);
+      this.dataService.getUserProfile(this.getFullName);
     }
-    
+
     getFullName(data: any) {
-        this.fullName = data.data.first_name + ' ';
-        this.fullName += data.data.last_name;
-        this.getLetters();
+      this.fullName = `${data.data.first_name} `;
+      this.fullName += data.data.last_name;
+      this.getLetters();
     }
 
     getLetters() {
-        this.letters = this.fullName.match(/\b(\w)/g).join('').toUpperCase();
-    }
-
-     error(message: any) {
-      console.log(this.fullName);
-      console.log(message);
+      this.letters = this.fullName.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'');
     }
 
     logOut() {
-        this.dataService.logOut();
-        this.$router.push('/login');
+      this.dataService.logOut();
+      this.$router.push('/login');
     }
 }
 </script>
 
 <style lang="scss" scoped>
 header {
-    // font-family: Roboto;
     display: flex;
     flex-direction: row;
-    // flex-flow: wrap;
     border-bottom: 1px solid #E1E1E1;
     .wrapper-header {
         display: flex;
@@ -108,7 +100,7 @@ header {
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        
+
         .full-name {
             margin-right: auto;
             display: inline-block;
@@ -143,10 +135,10 @@ header {
     .search-wrap {
         display: flex;
       .search {
-       
+
         }
     }
-  }     
+  }
 }
 
 // for IE

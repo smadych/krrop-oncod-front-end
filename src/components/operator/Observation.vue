@@ -8,7 +8,7 @@
             tbody
                 tr(v-for="(obj, index) in temporaryData" :key="index")
                     td
-                        button.plus-btn 
+                        button.triangle-btn
                     td(v-for="(data, indexData) in temporaryData[index]" :key="indexData") {{data}}
         .empty
 </template>
@@ -17,18 +17,17 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
-export default class Treatment extends Vue {
-    titleArr: string[] = ['Дата начала', 'Дата окончания', 'Вид лечения', 'Характер', 'Учреждение']
+export default class Observation extends Vue {
+    titleArr: string[] = ['Дата наболюдения', 'Факт', 'Локализация', 'Сторона']
 
-    temporaryData: string[][] = [['10.10.2020', '10.10.2020', 'Химиотеапия', 'Паллиативное', 'НИИ Гастроэнторология'],
-    ['10.10.2020', '10.10.2020', 'Химиотеапия', 'Паллиативное', 'НИИ Гастроэнторология']]
+    temporaryData: string[][] = [['10.10.2020', 'амбулаторный прием', '4 гор. больница', 'неизвестно'],
+      ['10.10.2020', 'амбулаторный прием', '4 гор. больница', 'неизвестно']]
 }
 </script>
 
 <style lang="scss" scoped>
 .table-wrap {
     margin: 30px 30px 0 30px;
-    // overflow: auto;
     table {
         margin: 0 auto;
         width: 100%;
@@ -59,13 +58,12 @@ export default class Treatment extends Vue {
                 color: #5F6063;
                 text-align: left;
             }
-            .plus-btn {
+            .triangle-btn {
                 width: 16px;
                 height: 16px;
                 background-color: #fff;
-                border: 1px solid #D6D6E0;
-                border-radius: 2px;
-                background-image: url('../../../assets/images/iconmonstr-plus-thin.svg');
+                border: none;
+                background-image: url('../../assets/images/down-btn.svg');
                 background-repeat: no-repeat, repeat;
                 background-position: center top 50%, 0 0;
                 background-size: .55em auto, 200%;
@@ -74,14 +72,12 @@ export default class Treatment extends Vue {
         }
     }
 }
-
+.empty {
+    height: 40px;
+}
 @media only screen and (max-width: 800px) {
     .table-wrap {
         overflow: auto;
     }
-}
-
-.empty {
-    height: 40px;
 }
 </style>

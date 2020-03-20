@@ -17,11 +17,11 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
-export default class Observation extends Vue {
-    titleArr: string[] = ['Дата наболюдения', 'Факт', 'Локализация', 'Сторона']
+export default class Inspection extends Vue {
+    titleArr: string[] = ['Дата наблюдения', 'Вид наблюдения', 'Где наблюдался', 'Профиль', 'Клиническая группа']
 
-    temporaryData: string[][] = [['10.10.2020', 'амбулаторный прием', '4 гор. больница', 'неизвестно'],
-    ['10.10.2020', 'амбулаторный прием', '4 гор. больница', 'неизвестно']]
+    temporaryData: string[][] = [['10.10.2020', 'Амбулаторный прием', '4 гор. больница', 'неизвестно', '2'],
+      ['10.10.2020', 'Амбулаторный прием', '4 гор. больница', 'неизвестно', '2']]
 }
 </script>
 
@@ -63,7 +63,7 @@ export default class Observation extends Vue {
                 height: 16px;
                 background-color: #fff;
                 border: none;
-                background-image: url('../../../assets/images/down-btn.svg');
+                background-image: url('../../assets/images/down-btn.svg');
                 background-repeat: no-repeat, repeat;
                 background-position: center top 50%, 0 0;
                 background-size: .55em auto, 200%;

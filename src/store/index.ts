@@ -1,5 +1,5 @@
 import {
-  createModule, mutation, createProxy, action, extractVuexModule,
+  createModule, createProxy, extractVuexModule,
 } from 'vuex-class-component/dist';
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -14,9 +14,10 @@ const VuexModule = createModule({
 Vue.use(Vuex);
 
 export class Store extends VuexModule {
-  token: string = ''
 
-  expiresDate: string = ''
+  token = ''
+
+  expiresDate = ''
 
   listOfPatients: any = ''
 }
@@ -25,7 +26,7 @@ export const store = new Vuex.Store({
   modules: {
     ...extractVuexModule(Store),
   },
-  plugins: [PersistedState()]
+  plugins: [PersistedState()],
 });
 
 export const vuexModule = {

@@ -1,7 +1,7 @@
 <template lang="pug">
 .wrapper
   form
-    img.logo(src='../../assets/images/logo.svg')
+    img.logo(src='../assets/images/logo.svg')
     h1 Войдите в систему
     input.login(placeholder='Логин' type='email' v-model.trim="$v.email.$model")
     .error-email-wrap
@@ -19,10 +19,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DataService } from '@/service//methodsApi';
-import { UserLogInData } from '@/store/logIn';
-import  { vuexModule } from '@/store';
-import Vuelidate from 'vuelidate'
-import { required, minLength, email, between } from 'vuelidate/lib/validators';
+import { UserLogInData } from '../store/modules/logIn';
+import { vuexModule } from '@/store';
+import Vuelidate from 'vuelidate';
+import {
+  required, minLength, email,
+} from 'vuelidate/lib/validators';
 
 Vue.use(Vuelidate);
 
@@ -35,23 +37,23 @@ Vue.use(Vuelidate);
     password: {
       required,
       minLength: minLength(4),
-    }
-  }
+    },
+  },
 })
 export default class Authorization extends Vue {
     vuexStore = vuexModule.store
 
     dataService: DataService = new DataService()
 
-    err: any = ''
+    err = ''
 
     email = ''
 
     password = ''
 
-    showErrorRequired: boolean = false
+    showErrorRequired = false
 
-    showErrorEmailPass: boolean = false
+    showErrorEmailPass = false
 
     logIn(): void {
       this.showErrorRequired = true;
@@ -71,16 +73,13 @@ export default class Authorization extends Vue {
 
     checkInput(): boolean {
       if (this.email === '' || this.password === '') {
-        if (this.email === '' || this.email === ' ')
-        if (this.password === '' || this.password === ' ')
-        return false;
+        if (this.email === '' || this.email === ' ') if (this.password === '' || this.password === ' ') return false;
       }
       return true;
     }
 
     logData(data: any) {
       if (data.status === 200) {
-        // this.$router.push('/patients');
         this.$router.push('/patientcard');
       }
     }
@@ -93,11 +92,6 @@ export default class Authorization extends Vue {
           this.showErrorEmailPass = true;
         }
       }
-    }
-
-    error(message: any) {
-      this.err = message;
-      console.log(message);
     }
 }
 </script>

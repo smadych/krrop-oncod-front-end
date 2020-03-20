@@ -24,26 +24,20 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Header from '../common/Header.vue';
 import { DataService } from '@/service/methodsApi';
+import Header from '../common/Header.vue';
 
 @Component({
-    components: {
-        Header,
-    }
+  components: {
+    Header,
+  },
 })
 export default class PatientCard extends Vue {
-    
     name = ''
 
     dataService: DataService = new DataService()
 
-    activeTab: string = ''
-
-    error(message: any) {
-      console.log(this.name);
-      console.log(message);
-    }
+    activeTab = ''
 }
 </script>
 
@@ -71,7 +65,6 @@ export default class PatientCard extends Vue {
     }
     .patient-name {
         color: #000000;
-        // justify-content: flex-start;
         text-align: left;
         font-size: 24px;
         font-weight: 600;
@@ -117,7 +110,6 @@ export default class PatientCard extends Vue {
         display: flex;
         flex-flow: wrap;
         a {
-            // border: 1px solid black;
             text-align: left;
             box-sizing: border-box;
             color: #5F6063;
@@ -145,17 +137,6 @@ export default class PatientCard extends Vue {
     }
 }
 
-@media only screen and (max-width: 810px) {
-    nav {
-        a {
-            // margin-bottom: 10px !important;
-            &:last-child {
-                // margin-bottom: 0 !important;
-            }
-        }
-    }
-}
-
 @media only screen and (max-width: 580px) {
     nav {
         flex-direction: column;
@@ -168,12 +149,9 @@ export default class PatientCard extends Vue {
     .wrapper-card {
         display: flex;
         flex-direction: column;
-        .info-section {     
+        .info-section {
             .link-back {
                 text-align: left;
-            }
-            .id-patient {
-
             }
             .patient-name {
                 width: 100%;
@@ -183,12 +161,6 @@ export default class PatientCard extends Vue {
                 display: flex;
                 flex-flow: wrap;
                 width: 100%;
-                .status-patient {
-
-                }
-                .region {
-
-                }
             }
             .diagnosis {
                 width: 100%;

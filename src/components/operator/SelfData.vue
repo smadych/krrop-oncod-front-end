@@ -52,7 +52,7 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class SelfData extends Vue {
-    
+
 }
 </script>
 
@@ -66,14 +66,12 @@ form {
         display: flex;
         flex-direction: row;
         flex-flow: wrap;
-        // margin-bottom: 15px;
             fieldset, input {
                 flex-grow: 1;
                 min-width: 145px;
                 margin: 0 10px 15px 0;
             }
             .gender {
-                // max-width: 185px;
             }
                 .birdth-date {
                     border: 1px solid #D6D6E0;
@@ -185,7 +183,7 @@ form {
         font-size: 16px;
         line-height: 1.3;
         width: 100%;
-        max-width: 100%; 
+        max-width: 100%;
         box-sizing: border-box;
         margin: 0;
         -moz-appearance: none;
@@ -196,7 +194,7 @@ form {
         border-radius: 0;
         background: white;
         outline: none;
-        background-image: url('../../../assets/images/down.svg');
+        background-image: url('../../assets/images/down.svg');
         background-repeat: no-repeat, repeat;
         background-position: right .7em top 50%, 0 0;
         background-size: .65em auto, 100%;
