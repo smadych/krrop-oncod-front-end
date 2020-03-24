@@ -1,26 +1,26 @@
 <template lang="pug">
 .wrapper
-  form
+  form(@submit.prevent="login" id="login-form")
     img.logo(src='../assets/images/logo.svg')
     h1 Войдите в систему
-    input.login(placeholder='Логин' type='email' v-model.trim="$v.email.$model")
+    input.login(placeholder='Логин' type='email' id="input-login" v-model.trim="$v.email.$model")
     .error-email-wrap
-      span.error-email(v-if='!$v.email.required && showErrorRequired') Введите электронную почту
+      span.error-email(v-if='!$v.email.required && showErrorRequired' id="invalid-email-span") Введите электронную почту
       span.error-email(v-else-if='!$v.email.email') Введите корректную электронную почту
-    input.password(placeholder='Пароль' type='password' v-model='password')
+    input.password(placeholder='Пароль' type='password' id="input-pass" v-model='password')
     .error-password-wrap
       span.error-pass(v-if='!$v.password.required && showErrorRequired') Введите пароль
       span.error-pass(v-else-if='!$v.password.minLength') Пароль слишком короткий
       span.error-pass(v-if='showErrorEmailPass') Неверные почта или пароль
-    button(@click='logIn') Войти
-    a Забыли пароль?
+    button(type='submit' id="login-button")  Войти
+    a(@click='showToken') Забыли пароль?
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { DataService } from '@/service//methodsApi';
+import { DataService } from '../service/methodsApi';
 import { UserLogInData } from '../store/modules/logIn';
-import { vuexModule } from '@/store';
+import { vuexModule } from '@/store/index';
 import Vuelidate from 'vuelidate';
 import {
   required, minLength, email,
@@ -55,35 +55,49 @@ export default class Authorization extends Vue {
 
     showErrorEmailPass = false
 
-    logIn(): void {
+
+    //Integration test + mock
+    login(): void {
       this.showErrorRequired = true;
       if (this.checkInput()) {
         const userData: UserLogInData = {
           email: this.email,
           password: this.password,
         };
+        console.log(this.email);
+        console.log(this.password);
         // if (this.email === '200@200.com') {
         //   this.vuexStore.token = '123';
         //   this.$router.push('/patientcard');
         // }
+        console.log(vuexModule.store.token);
         this.dataService.sendDataAutorization(JSON.stringify(userData),
-          this.logData, this.errorLogIn);
+          this.enableAccess, this.errorLogIn);
       }
     }
 
+    //Test Ignore
+    showToken() {
+      console.log(this.vuexStore.token);
+    }
+
+    //TestFiture
     checkInput(): boolean {
-      if (this.email === '' || this.password === '') {
-        if (this.email === '' || this.email === ' ') if (this.password === '' || this.password === ' ') return false;
+      if (this.email === '' || this.email === ' '
+      || this.password === '' || this.password === ' ') {
+         return false;
       }
       return true;
     }
 
-    logData(data: any) {
+    //Integration Test
+    enableAccess(data: any) {
       if (data.status === 200) {
         this.$router.push('/patientcard');
       }
     }
 
+    //Integration  + mock
     errorLogIn(message: any) {
       console.log(message.response);
       if (message.response !== undefined) {

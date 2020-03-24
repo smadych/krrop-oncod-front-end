@@ -21,7 +21,6 @@ export const routes = [
   { path: '/', redirect: '/login' },
 ];
 
-
 export const router = new VueRouter({
   routes,
 });

@@ -1,5 +1,5 @@
 import {
-  createModule, createProxy, extractVuexModule,
+  createModule, createProxy, extractVuexModule
 } from 'vuex-class-component/dist';
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -17,9 +17,20 @@ export class Store extends VuexModule {
 
   token = ''
 
+  authStatus = ''
+
   expiresDate = ''
 
   listOfPatients: any = ''
+
+  get isAuthorized() {
+    return !!this.token
+  }
+
+  get authorizedStatus() {
+    return this.authStatus;
+  }
+
 }
 
 export const store = new Vuex.Store({

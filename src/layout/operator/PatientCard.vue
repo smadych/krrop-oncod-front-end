@@ -33,8 +33,6 @@ import Header from '../common/Header.vue';
   },
 })
 export default class PatientCard extends Vue {
-    name = ''
-
     dataService: DataService = new DataService()
 
     activeTab = ''
@@ -96,7 +94,7 @@ export default class PatientCard extends Vue {
         padding: 10px 0 10px 20px;
         border-radius: 3px;
         background-color: #F3F3F7;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 }
 
@@ -114,19 +112,13 @@ export default class PatientCard extends Vue {
             box-sizing: border-box;
             color: #5F6063;
             text-decoration: none;
-            margin-right: 80px;
+            // margin-right: 80px;
+            margin: 20px 80px 0 0;
             padding-bottom: 14px;
             &:hover {
                 color: black;
                 margin-bottom: -2px;
                 border-bottom: 2px solid #5555FF;
-                &:last-child {
-                    &:hover {
-                    color: black;
-                    margin-bottom: -2px;
-                    border-bottom: 2px solid #5555FF;
-                    }
-                }
             }
         }
     .router-link-exact-active {

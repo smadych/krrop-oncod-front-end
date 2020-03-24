@@ -5,8 +5,8 @@ header
         .search-wrap
             input.search(placeholder='Пошук по пацієнтам')
         .full-name-wrap
-            h5.full-name {{fullName || 'Bob Carry'}}
-            span.initials {{letters || 'CC'}}
+            h5.full-name {{fullName}}
+            span.initials {{letters}}
 </template>
 
 <script lang="ts">
@@ -22,7 +22,7 @@ export default class Header extends Vue {
 
     letters = ''
 
-    mounted() {
+    beforeMount() {
       console.log(vuexModule.store.token);
       this.dataService.getUserProfile(this.getFullName);
     }
@@ -38,7 +38,10 @@ export default class Header extends Vue {
     }
 
     logOut() {
-      this.dataService.logOut();
+      this.dataService.logOut(this.moveToLogIn);
+    }
+
+    moveToLogIn() {
       this.$router.push('/login');
     }
 }
@@ -134,9 +137,6 @@ header {
       display: flex;
     .search-wrap {
         display: flex;
-      .search {
-
-        }
     }
   }
 }

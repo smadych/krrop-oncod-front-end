@@ -1,81 +1,59 @@
-import ax from '@/service/api';
+import axiosBase from '@/service/api';
 import { vuexModule } from '@/store';
 
 export class DataService {
-  axs = ax;
 
-  public sendDataAutorization(data: string, succes: (logData: any) => void,
-    err: (error: any) => void) {
-    this.axs.post('api/auth/login', data, {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: 'Bearer {token}',
-        'X-localization': 'uk',
-      },
-    }).then((response) => {
-      console.log(response);
-      const respData: any = response;
+
+  sendDataAutorization(data: string, succes: (logData: any) => void, err: (error: any) => void) {
+    console.log(vuexModule.store.token);
+    axiosBase.post('api/auth/login', data)
+    .then((response) => {
       vuexModule.store.token = response.data.access_token;
+      // axiosBase.defaults.headers.common['Authorization'] = `Bearer ${vuexModule.store.token}`;
       vuexModule.store.expiresDate = response.data.expires_at;
-      this.getPatients();
-      succes(respData);
+      succes(response);
     }).catch((error) => {
       err(error);
-      console.log(error);
     });
   }
-
+  
   public getUserProfile(succes: (logData: any) => void) {
-    this.axs.get('/api/auth/user', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${vuexModule.store.token}`,
-        'X-localization': 'uk',
-      },
+    axiosBase.get('api/auth/user', {
+     
     })
       .then((response) => {
-        // handle success
-        const result: any = response;
-        succes(result);
+        succes(response);
       })
       .catch((error) => {
-        // handle error
         console.log(error);
       });
   }
 
-  public logOut() {
-    this.axs.get('/api/auth/logout', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${vuexModule.store.token}`,
-        'X-localization': 'uk',
-      },
+  public logOut(succes: () => void) {
+    axiosBase.get('api/auth/logout', {
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   Accept: 'application/json',
+      //   Authorization: `Bearer ${vuexModule.store.token}`,
+      //   'X-localization': 'uk',
+      // }
     })
       .then((response) => {
         console.log(response);
         vuexModule.store.token = '';
         vuexModule.store.expiresDate = '';
+        vuexModule.store.authStatus = '';
+        delete axiosBase.defaults.headers.common['Authorization'];
+        succes();
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  getPatients() {
-    this.axs.get('/api/operator/patients', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${vuexModule.store.token}`,
-        'X-localization': 'uk',
-      },
-    })
+  public getPatients() {
+    axiosBase.get('api/operator/patients')
       .then((response) => {
-        console.log(response);
         vuexModule.store.listOfPatients = response;
       })
       .catch((error) => {
@@ -84,4 +62,4 @@ export class DataService {
   }
 }
 
-export default { DataService };
+

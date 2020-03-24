@@ -41,13 +41,14 @@ export default class Authorization extends Vue {
     dataService: DataService = new DataService()
 
     statusArr = Status
+
+    beforeMount() {
+        this.dataService.getPatients();
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-* {
-//   border: 1px solid black;
-}
 .wrapper-patients {
     .filter-section {
         display: flex;
