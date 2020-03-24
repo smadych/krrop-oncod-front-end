@@ -15,41 +15,50 @@ describe('Authorization', () => {
         
 
         await authWrapper.vm.$nextTick();
-        const loginErrorMessage = authWrapper.find('#invalid-email-span');
+        const loginErrorMessage = authWrapper.find('#empty-email-span');
       
         expect(loginErrorMessage.text()).to.equal('Введите электронную почту');
         }
-    )
+    ),
 
     it('is incorrect login handled',  async () => {
+         //Arrange
+         const authWrapper = shallowMount(Authorization);
+                            
+         //Act
+         const loginForm = authWrapper.find('#login-form');
 
+         authWrapper.find('#input-login').setValue('qwewer.com');
+         authWrapper.find('#input-pass').setValue('qwerty');
+             
+         loginForm.trigger('submit');
+         
+         await authWrapper.vm.$nextTick();
+         const loginErrorMessage = authWrapper.find('#invalid-email-span');
+       
+         expect(loginErrorMessage.text()).to.equal('Введите корректную электронную почту');
+         }),
         
-
-        //Assert        
-        }
-    )
-/*
     it('is password to short lenght handled', () => {
         //Arrange
-        const authWrapper = mount(Authorization);
+        // const authWrapper = shallowMount(Authorization);
         
-        const loginField =authWrapper.find('#input-login');
+        // const loginForm = authWrapper.find('#login-form');
         
-        const passField =authWrapper.find('#input-pass');
+        // const passField =authWrapper.find('#input-pass');
 
-        loginField.text = "email@gmail.com";
-        passField.text = "12";
+        // loginField.text = "email@gmail.com";
+        // passField.text = "12";
 
-        //Act
-        const loginButton = wrapper.find('#login-button');
+        // //Act
+        // const loginButton = wrapper.find('#login-button');
             
-        loginButton.trigger('click');
+        // loginButton.trigger('click');
         
 
-        //Assert
+        // //Assert
 
-        expect(p.text()).toBe('message');
+        // expect(p.text()).toBe('message');
         }
     )
-    */
 })

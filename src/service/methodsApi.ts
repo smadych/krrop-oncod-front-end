@@ -9,7 +9,6 @@ export class DataService {
     axiosBase.post('api/auth/login', data)
     .then((response) => {
       vuexModule.store.token = response.data.access_token;
-      // axiosBase.defaults.headers.common['Authorization'] = `Bearer ${vuexModule.store.token}`;
       vuexModule.store.expiresDate = response.data.expires_at;
       succes(response);
     }).catch((error) => {
@@ -30,14 +29,7 @@ export class DataService {
   }
 
   public logOut(succes: () => void) {
-    axiosBase.get('api/auth/logout', {
-      // headers: {
-      //   'Content-Type': 'application/json',
-      //   Accept: 'application/json',
-      //   Authorization: `Bearer ${vuexModule.store.token}`,
-      //   'X-localization': 'uk',
-      // }
-    })
+    axiosBase.get('api/auth/logout')
       .then((response) => {
         console.log(response);
         vuexModule.store.token = '';

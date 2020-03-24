@@ -71,8 +71,6 @@ form {
                 min-width: 145px;
                 margin: 0 10px 15px 0;
             }
-            .gender {
-            }
                 .birdth-date {
                     border: 1px solid #D6D6E0;
                     padding-left: 15px;

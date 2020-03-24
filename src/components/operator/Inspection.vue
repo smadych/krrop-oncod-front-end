@@ -25,9 +25,16 @@ export default class Inspection extends Vue {
 }
 </script>
 
+
 <style lang="scss" scoped>
+
+@import "./src/scss/mixins.scss";
+
 .table-wrap {
     margin: 30px 30px 0 30px;
+    @include _800 {
+        overflow: auto;
+    }
     table {
         margin: 0 auto;
         width: 100%;
@@ -74,10 +81,5 @@ export default class Inspection extends Vue {
 }
 .empty {
     height: 40px;
-}
-@media only screen and (max-width: 800px) {
-    .table-wrap {
-        overflow: auto;
-    }
 }
 </style>

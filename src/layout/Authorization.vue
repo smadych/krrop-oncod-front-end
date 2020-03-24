@@ -5,8 +5,8 @@
     h1 Войдите в систему
     input.login(placeholder='Логин' type='email' id="input-login" v-model.trim="$v.email.$model")
     .error-email-wrap
-      span.error-email(v-if='!$v.email.required && showErrorRequired' id="invalid-email-span") Введите электронную почту
-      span.error-email(v-else-if='!$v.email.email') Введите корректную электронную почту
+      span.error-email(v-if='!$v.email.required && showErrorRequired' id="empty-email-span") Введите электронную почту
+      span.error-email(v-else-if='!$v.email.email' id="invalid-email-span") Введите корректную электронную почту
     input.password(placeholder='Пароль' type='password' id="input-pass" v-model='password')
     .error-password-wrap
       span.error-pass(v-if='!$v.password.required && showErrorRequired') Введите пароль
@@ -66,13 +66,13 @@ export default class Authorization extends Vue {
         };
         console.log(this.email);
         console.log(this.password);
-        // if (this.email === '200@200.com') {
-        //   this.vuexStore.token = '123';
-        //   this.$router.push('/patientcard');
-        // }
+        if (this.email === '200@200.com') {
+          this.vuexStore.token = '123';
+          this.$router.push('/patientcard');
+        }
         console.log(vuexModule.store.token);
-        this.dataService.sendDataAutorization(JSON.stringify(userData),
-          this.enableAccess, this.errorLogIn);
+        // this.dataService.sendDataAutorization(JSON.stringify(userData),
+        //   this.enableAccess, this.errorLogIn);
       }
     }
 
@@ -116,7 +116,6 @@ export default class Authorization extends Vue {
 }
 
 .wrapper {
-    // font-family: Roboto;
     height: 100%;
     display: flex;
     align-items: center;
@@ -150,9 +149,6 @@ export default class Authorization extends Vue {
       font-size: 16px;
       letter-spacing: 0.15px;
       line-height: 24px;
-    }
-    .login {
-      // margin-bottom: 20px;
     }
     .error-email-wrap {
       height: 25px;

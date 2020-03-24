@@ -34,7 +34,7 @@ export default class Header extends Vue {
     }
 
     getLetters() {
-      this.letters = this.fullName.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'');
+      this.letters = this.fullName.split(/\s/).reduce((response,word) => response+=word.slice(0,1),'');
     }
 
     logOut() {
@@ -48,6 +48,9 @@ export default class Header extends Vue {
 </script>
 
 <style lang="scss" scoped>
+
+@import "./src/scss/mixins.scss";
+
 header {
     display: flex;
     flex-direction: row;
@@ -58,16 +61,38 @@ header {
         flex-flow: wrap;
         margin: 0 30px 0 30px;
         width: 100%;
+        @include _680 {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
     .logo {
         margin: 0 55px 0 0;
+        @include _660 {
+            margin: 10px 55px 0 0 !important;
+        }
+        @include _520 {
+            margin: 10px 55px 20px 0 !important;
+        }
+        @include _520 {
+            margin: 10px auto !important;
+        }
     }
     .full-name-wrap {
         margin-left: auto;
         display: inline-block;
         vertical-align: middle;
+        @include _660 {
+            margin: 0 auto;
+        }
         .full-name {
             display: inline-block;
             vertical-align: middle;
+            @include _680 {
+                margin-right: auto;
+                display: inline-block;
+                vertical-align: middle;
+            }
         }
     }
     .search-wrap {
@@ -75,7 +100,7 @@ header {
         .search {
             width: 100%;
             outline: none;
-            color: 8F#000;
+            color: #000;
             opacity: 56%;
             background-color: #F3F3F7;
             padding: 0 100px 0 35px;
@@ -87,6 +112,9 @@ header {
             background-repeat: no-repeat;
             background-position: 10px 12px;
             background-size: 15px;
+            @include _660 {
+                margin-top: 10px !important;
+            }
         }
     }
     .initials {
@@ -98,45 +126,20 @@ header {
     }
     }
 }
-@media only screen and (max-width: 680px) {
-    .wrapper-header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
 
-        .full-name {
-            margin-right: auto;
-            display: inline-block;
-            vertical-align: middle;
-    }
-    }
-}
-
-@media only screen and (max-width: 660px) {
-    .logo, .search {
-        margin-top: 10px !important;
-    }
-    .full-name-wrap {
-        margin: 0 auto;
-    }
-}
-
-@media only screen and (max-width: 520px) {
-    .logo {
-        margin: 10px 10px 20px 0 !important;
-    }
-}
 .table-patients-wrapper {
     display: block;
     padding: 0 30px 0 30px;
 }
 
-// for Firefox
+//for Firefox
 @-moz-document url-prefix() {
   .wrapper-header {
-      display: flex;
+    //   display: flex;
+      color: red !important;
     .search-wrap {
-        display: flex;
+        // display: flex;
+        color: red !important;
     }
   }
 }

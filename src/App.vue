@@ -24,7 +24,6 @@ export default class App extends Vue {
       return new Promise((resolve, reject) => {
         if(err.status === 401 && err.config && !err.config.__isRetryRequest) {
           this.dataService.logOut(this.moveToLogIn);
-          console.log('log in App vue');
         }
         throw err;
       });

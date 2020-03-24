@@ -89,7 +89,8 @@ export default class PatientCard extends Vue {
         }
     }
     .diagnosis {
-        width: fill-available;
+        // width: fill-available;
+        width: stretch;
         text-align: left;
         padding: 10px 0 10px 20px;
         border-radius: 3px;
