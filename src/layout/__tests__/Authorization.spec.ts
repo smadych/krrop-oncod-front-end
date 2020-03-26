@@ -1,6 +1,7 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import Authorization from '@/layout/Authorization.vue';
 import { expect } from 'chai';
+// import jest from 'jest';
 
 describe('Authorization', () => {
     it('are on new form fields login and pass fields empty', async () => {

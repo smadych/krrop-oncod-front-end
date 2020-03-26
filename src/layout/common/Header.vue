@@ -23,7 +23,6 @@ export default class Header extends Vue {
     letters = ''
 
     beforeMount() {
-      console.log(vuexModule.store.token);
       this.dataService.getUserProfile(this.getFullName);
     }
 
