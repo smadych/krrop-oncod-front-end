@@ -76,6 +76,13 @@ header {
         @include _520 {
             margin: 10px auto !important;
         }
+        @include _IE {
+            width: 70px;
+            height: 45px;
+            @include _520 {
+                margin: 10px 0 0 0 !important;
+            }
+        }
     }
     .full-name-wrap {
         margin-left: auto;
@@ -83,6 +90,11 @@ header {
         vertical-align: middle;
         @include _660 {
             margin: 0 auto;
+        }
+        @include _IE {
+            @include _520 {
+                margin: 10px 0 0 0 !important;
+            }
         }
         .full-name {
             display: inline-block;
@@ -114,6 +126,10 @@ header {
             @include _660 {
                 margin-top: 10px !important;
             }
+            @include _IE {
+                background-position: -55px 10px !important;
+                background-size: 150px !important;
+            }
         }
     }
     .initials {
@@ -133,41 +149,8 @@ header {
 
 //for Firefox
 @-moz-document url-prefix() {
-  .wrapper-header {
-    //   display: flex;
-      color: red !important;
-    .search-wrap {
-        // display: flex;
-        color: red !important;
+    .search {
+        box-sizing: border-box;;
     }
-  }
-}
-
-// for IE
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    .wrapper-header {
-    //   display: flex;
-        .logo {
-            width: 70px;
-            height: 45px;
-        }
-    .search-wrap {
-        // display: flex;
-      .search {
-            background-position: -55px 10px !important;
-            background-size: 150px !important;
-        }
-    }
-  }
-  @media only screen and (max-width: 660px) {
-    .logo, .search {
-        margin-top: 10px !important;
-    }
-    .wrapper-header {
-        .full-name-wrap {
-            margin-right: 50%;
-        }
-    }
-}
 }
 </style>

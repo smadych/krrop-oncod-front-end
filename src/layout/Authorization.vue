@@ -64,14 +64,14 @@ export default class Authorization extends Vue {
           email: this.email,
           password: this.password,
         };
-        // console.log(this.email);
-        // console.log(this.password);
-        // if (this.email === '200@200.com') {
-        //   this.vuexStore.token = '123';
-        //   this.$router.push('/patientcard');
-        // }
-        this.dataService.sendDataAutorization(JSON.stringify(userData),
-          this.enableAccess, this.errorLogIn);
+        console.log(this.email);
+        console.log(this.password);
+        if (this.email === '200@200.com') {
+          this.vuexStore.token = '123';
+          this.$router.push('/patientcard');
+        }
+        // this.dataService.sendDataAutorization(JSON.stringify(userData),
+        //   this.enableAccess, this.errorLogIn);
       }
     }
 
