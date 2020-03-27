@@ -1,6 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
 import PatientCard from '@/layout/operator/PatientCard.vue';
-import jest from 'jest';
 
 describe('PatientCard', () => {
     const patientCardWrapper = shallowMount(PatientCard);

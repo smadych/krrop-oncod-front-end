@@ -1,6 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
 import Header from '@/layout/common/Header.vue';
-import jest from 'jest';
 
 describe('Header', () => {
     const headerWrapper = shallowMount(Header);

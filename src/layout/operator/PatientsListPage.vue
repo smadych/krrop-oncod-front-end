@@ -2,7 +2,7 @@
 .wrapper-patients
     Header
     section.filter-section
-        h4 Пациенты
+        h4#title Пациенты
         .filters
             input(placeholder='идентиф')
             input(placeholder='имя')
@@ -13,7 +13,7 @@
             thead
                 th(v-for='stat in statusArr' :key='stat') {{stat}}
             tbody
-                tr(v-for='(patient, index) in vuexStore.listOfPatients.data.data' :key='index')
+                tr(v-for='(patient, index) in vuexStore.listOfPatients' :key='index')
                     td {{patient.id}}
                     td {{patient.first_name}} {{patient.middle_name}} {{patient.last_name}}
                     td {{patient.region_id}}

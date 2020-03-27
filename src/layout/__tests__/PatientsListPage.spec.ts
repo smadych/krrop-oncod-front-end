@@ -7,7 +7,7 @@ describe('PatientsListPage', () => {
     const patientsListPageWrapper = shallowMount(PatientsListPage);
 
     it('title is render', () => {
-       expect(patientsListPageWrapper.find('#title')).toBe('Пациенты');
+       expect(patientsListPageWrapper.find('#title').text()).toBe('Пациенты');
     }),
 
     it('filters is render', () => {
@@ -19,6 +19,6 @@ describe('PatientsListPage', () => {
     }),
 
     it('table titles is render', () => {
-        expect(patientsListPageWrapper.findAll('table thead > *')).toHaveLength(4);
+        expect(patientsListPageWrapper.findAll('table thead > *')).toHaveLength(7);
     })
 })

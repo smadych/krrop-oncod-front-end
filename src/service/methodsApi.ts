@@ -46,7 +46,7 @@ export class DataService {
   public getPatients() {
     axiosBase.get('api/operator/patients')
       .then((response) => {
-        vuexModule.store.listOfPatients = response;
+        vuexModule.store.listOfPatients = response.data.data;
       })
       .catch((error) => {
         console.log(error);
