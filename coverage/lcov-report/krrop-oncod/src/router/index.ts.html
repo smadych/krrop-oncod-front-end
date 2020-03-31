@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/16</span>
             </div>
         
             
@@ -88,9 +88,9 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -119,30 +119,30 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import VueRouter from 'vue-router';
-import Vue from 'vue';
-import { vuexModule } from '../store';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import VueRouter from 'vue-router';</span>
+<span class="cstat-no" title="statement not covered" >import Vue from 'vue';</span>
+<span class="cstat-no" title="statement not covered" >import { vuexModule } from '../store';</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >Vue.use(VueRouter);</span>
 &nbsp;
-export const routes = <span class="cstat-no" title="statement not covered" >[</span>
-  { path: '/login', name: 'loginPage', component: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >import('../layout/Authorization.vue') </span>},
-  { path: '/patients', name: 'patientsPage', component: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >import('../layout/operator/PatientsListPage.vue') </span>},
+export const <span class="cstat-no" title="statement not covered" >routes = [</span>
+  { path: '/login', name: 'loginPage', component: <span class="fstat-no" title="function not covered" >() =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > import('</span>../layout/Authorization.vue') </span>},
+  { path: '/patients', name: 'patientsPage', component: <span class="fstat-no" title="function not covered" >() =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > import('</span>../layout/operator/PatientsListPage.vue') </span>},
   {
     path: '/patientcard',
     name: 'cardPatientPage',
-    component: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >import('../layout/operator/PatientCard.vue'),</span>
+    component: <span class="fstat-no" title="function not covered" >() =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > import('</span>../layout/operator/PatientCard.vue'),</span>
     children: [
-      { path: 'selfdata', component: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >import('../components/operator/SelfData.vue') </span>},
-      { path: 'inspection', component: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >import('../components/operator/Inspection.vue') </span>},
-      { path: 'observation', component: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >import('../components/operator/Observation.vue') </span>},
-      { path: 'treatment', component: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >import('../components/operator/Treatment.vue') </span>},
+      { path: 'selfdata', component: <span class="fstat-no" title="function not covered" >() =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > import('</span>../components/operator/SelfData.vue') </span>},
+      { path: 'inspection', component: <span class="fstat-no" title="function not covered" >() =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > import('</span>../components/operator/Inspection.vue') </span>},
+      { path: 'observation', component: <span class="fstat-no" title="function not covered" >() =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > import('</span>../components/operator/Observation.vue') </span>},
+      { path: 'treatment', component: <span class="fstat-no" title="function not covered" >() =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > import('</span>../components/operator/Treatment.vue') </span>},
     ],
   },
   { path: '/', redirect: '/login' },
 ];
 &nbsp;
-export const router = <span class="cstat-no" title="statement not covered" >new VueRouter({</span>
+export const <span class="cstat-no" title="statement not covered" >router = new VueRouter({</span>
   routes,
 });
 &nbsp;
@@ -157,7 +157,7 @@ export const router = <span class="cstat-no" title="statement not covered" >new 
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Mar 23 2020 20:16:34 GMT+0200 (EET)
+                at Tue Mar 31 2020 14:30:08 GMT+0300 (EEST)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

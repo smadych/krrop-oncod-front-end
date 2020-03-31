@@ -5,21 +5,23 @@
     h1 Войдите в систему
     input.login(placeholder='Логин' type='email' id="input-login" v-model.trim="$v.email.$model")
     .error-email-wrap
-      span.error-email(v-if='!$v.email.required && showErrorRequired' id="empty-email-span") Введите электронную почту
-      span.error-email(v-else-if='!$v.email.email' id="invalid-email-span") Введите корректную электронную почту
+      span.error-email(v-if='!$v.email.required && showErrorRequired'
+      id="empty-email-span") Введите электронную почту
+      span.error-email(v-else-if='!$v.email.email'
+      id="invalid-email-span") Введите корректную электронную почту
     input.password(placeholder='Пароль' type='password' id="input-pass" v-model='password')
     .error-password-wrap
       span.error-pass(v-if='!$v.password.required && showErrorRequired') Введите пароль
       span.error-pass(v-else-if='!$v.password.minLength') Пароль слишком короткий
       span.error-pass(v-if='showErrorEmailPass') Неверные почта или пароль
     button(type='submit' id="login-button")  Войти
-    a(@click='showToken') Забыли пароль?
+    a Забыли пароль?
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { DataService } from '../service/methodsApi';
-import { UserLogInData } from '../store/modules/logIn';
+import { DataService } from '@/service/methodsApi';
+import { UserLogInData } from '@/store/modules/logIn';
 import { vuexModule } from '@/store/index';
 import Vuelidate from 'vuelidate';
 import {
@@ -56,7 +58,7 @@ export default class Authorization extends Vue {
     showErrorEmailPass = false
 
 
-    //Integration test + mock
+    // Integration test + mock
     login(): void {
       this.showErrorRequired = true;
       if (this.checkInput()) {
@@ -64,8 +66,6 @@ export default class Authorization extends Vue {
           email: this.email,
           password: this.password,
         };
-        console.log(this.email);
-        console.log(this.password);
         if (this.email === '200@200.com') {
           this.vuexStore.token = '123';
           this.$router.push('/patientcard');
@@ -75,28 +75,23 @@ export default class Authorization extends Vue {
       }
     }
 
-    //Test Ignore
-    showToken() {
-      console.log(this.vuexStore.token);
-    }
-
-    //TestFiture
+    // TestFiture
     checkInput(): boolean {
       if (this.email === '' || this.email === ' '
       || this.password === '' || this.password === ' ') {
-         return false;
+        return false;
       }
       return true;
     }
 
-    //Integration Test
+    // Integration Test
     enableAccess(data: any) {
       if (data.status === 200) {
         this.$router.push('/patientcard');
       }
     }
 
-    //Integration  + mock
+    // Integration  + mock
     errorLogIn(message: any) {
       if (message.response !== undefined) {
         if (message.response.status === 422

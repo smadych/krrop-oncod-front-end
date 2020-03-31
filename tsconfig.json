@@ -37,7 +37,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "src/components/__tests__/**/*.ts",
-    "src/components/__tests__/**/*.tsx", "src/layout/__tests__/Authorization.spec.ts"
+    "src/components/__tests__/**/*.tsx", "src/__tests__/Authorization.spec.ts"
   ],
   "exclude": [
     "node_modules"

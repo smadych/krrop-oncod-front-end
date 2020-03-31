@@ -43,7 +43,7 @@ export default class Authorization extends Vue {
     statusArr = Status
 
     beforeMount() {
-        this.dataService.getPatients();
+      this.dataService.getPatients();
     }
 }
 </script>

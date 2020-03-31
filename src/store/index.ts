@@ -1,6 +1,6 @@
 import {
   createModule, createProxy, extractVuexModule
-} from 'vuex-class-component/dist';
+} from 'vuex-class-component';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import PersistedState from 'vuex-persistedstate';
@@ -30,7 +30,6 @@ export class Store extends VuexModule {
   get authorizedStatus() {
     return this.authStatus;
   }
-
 }
 
 export const store = new Vuex.Store({

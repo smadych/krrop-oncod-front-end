@@ -50,7 +50,7 @@
     "eslint-plugin-vue": "^6.1.2",
     "expect": "^25.1.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^25.1.0",
+    "jest": "^25.2.4",
     "mocha": "^7.1.1",
     "mocha-webpack": "^1.1.0",
     "pug": "^2.0.4",
@@ -64,6 +64,13 @@
   },
   "jest": {
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "collectCoverage": true,
+    "coverageReporters": ["html", "text-summary"],
+    "collectCoverageFrom": [
+      "**/*.{ts,vue}",
+      "!**/node_modules/**",
+      "!main.ts"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",

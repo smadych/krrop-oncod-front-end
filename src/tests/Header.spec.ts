@@ -19,4 +19,13 @@ describe('Header', () => {
     it('initials field is not empty', () => {
         expect(headerWrapper.find('.initials').text()).toBe('');
     })
+}), 
+
+describe('Header logic', () => {
+    const headerWrapper = shallowMount(Header);
+
+    it('find method', () => {
+        console.log(headerWrapper.vm.$data);
+        // expect(headerWrapper.vm.$data)
+    })
 })

@@ -5,9 +5,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Layout from './components/Layout.vue';
 import { DataService } from '@/service//methodsApi';
 import axiosBase from '@/service/api';
+import Layout from './components/Layout.vue';
 
 @Component({
   components: {
@@ -15,24 +15,22 @@ import axiosBase from '@/service/api';
   },
 })
 export default class App extends Vue {
-
   dataService: DataService = new DataService()
 
-  created() {
-    console.log('app vue upload');
-    axiosBase.interceptors.response.use(undefined, err => {
-      return new Promise((resolve, reject) => {
-        if(err.status === 401 && err.config && !err.config.__isRetryRequest) {
-          this.dataService.logOut(this.moveToLogIn);
-        }
-        throw err;
-      });
-    });
-  }
+  // created() {
+  // axiosBase.interceptors.response.use(undefined, err => {
+  //   return new Promise((resolve, reject) => {
+  //     if(err.status === 401 && err.config && !err.config.__isRetryRequest) {
+  //       this.dataService.logOut(this.moveToLogIn);
+  //     }
+  //     throw err;
+  //   });
+  // });
+  // }
 
-  moveToLogIn() {
-    this.$router.push('/login');
-  }
+  // moveToLogIn() {
+  //   this.$router.push('/login');
+  // }
 }
 </script>
 
