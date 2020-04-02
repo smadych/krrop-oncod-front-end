@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 <template lang="pug">
 header
     .wrapper-header
@@ -21,6 +22,10 @@ export default class Header extends Vue {
     fullName = ''
 
     letters = ''
+
+    mounted() {
+      console.log(this.fullName);
+    }
 
     beforeMount() {
       this.dataService.getUserProfile(this.getFullName);

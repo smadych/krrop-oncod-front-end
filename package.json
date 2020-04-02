@@ -65,7 +65,6 @@
   "jest": {
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "collectCoverage": true,
-    "coverageReporters": ["html", "text-summary"],
     "collectCoverageFrom": [
       "**/*.{ts,vue}",
       "!**/node_modules/**",

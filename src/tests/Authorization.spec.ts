@@ -26,5 +26,12 @@ describe('Authorization', () => {
         loginForm.trigger('submit');
         await authWrapper.vm.$nextTick();
         expect(errMessage.text()).toBe('Пароль слишком короткий');
+    }),
+
+    it('call method', () => {
+        const mockFucn = jest.fn();
+        (authWrapper.vm as any).login = mockFucn;
+        loginForm.trigger('submit');
+        expect((authWrapper.vm as any).login.mock.calls.length).toBe(1);
     })
 })
